@@ -13,6 +13,7 @@
 		E4CA095225491D3500C8993B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CA095125491D3500C8993B /* Preview Assets.xcassets */; };
 		E4CA095D25491D3500C8993B /* Project_Triple_STests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA095C25491D3500C8993B /* Project_Triple_STests.swift */; };
 		E4CA096825491D3500C8993B /* Project_Triple_SUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA096725491D3500C8993B /* Project_Triple_SUITests.swift */; };
+		E4CA09792549212E00C8993B /* SortingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA09782549212E00C8993B /* SortingCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		E4CA096325491D3500C8993B /* Project-Triple-SUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-Triple-SUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CA096725491D3500C8993B /* Project_Triple_SUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Triple_SUITests.swift; sourceTree = "<group>"; };
 		E4CA096925491D3500C8993B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4CA09782549212E00C8993B /* SortingCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +97,8 @@
 		E4CA094925491D3200C8993B /* Project-Triple-S */ = {
 			isa = PBXGroup;
 			children = (
+				E4CA097D2549213D00C8993B /* Views */,
 				E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */,
-				E4CA094C25491D3200C8993B /* ContentView.swift */,
 				E4CA094E25491D3500C8993B /* Assets.xcassets */,
 				E4CA095325491D3500C8993B /* Info.plist */,
 				E4CA095025491D3500C8993B /* Preview Content */,
@@ -128,6 +130,15 @@
 				E4CA096925491D3500C8993B /* Info.plist */,
 			);
 			path = "Project-Triple-SUITests";
+			sourceTree = "<group>";
+		};
+		E4CA097D2549213D00C8993B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA094C25491D3200C8993B /* ContentView.swift */,
+				E4CA09782549212E00C8993B /* SortingCenter.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 			files = (
 				E4CA094D25491D3200C8993B /* ContentView.swift in Sources */,
 				E4CA094B25491D3200C8993B /* Project_Triple_SApp.swift in Sources */,
+				E4CA09792549212E00C8993B /* SortingCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Main app entry
 @main
 struct Project_Triple_SApp: App {
     var body: some Scene {

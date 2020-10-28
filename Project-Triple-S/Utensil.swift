@@ -17,7 +17,11 @@ enum DragState {
 struct Utensil: View {
     @State private var dragAmount = CGSize.zero
     @State private var dragState = DragState.unknown
-    @State var utensil: String = "fork-shadow"
+    @State var utensil: String
+    @Binding var forkScore: Int
+    @Binding var knifeScore: Int
+    @Binding var spoonScore: Int
+    @Binding var totalScore: Int
     
     var onChanged: ((CGPoint, String) -> DragState)?
     
@@ -35,12 +39,25 @@ struct Utensil: View {
                         self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
                     }
                     .onEnded { _ in
-                        self.dragAmount = .zero
-                        self.utensil = getRandomUtensil()
+                        if dragState == .good {
+                            totalScore += 1
+                            switch self.utensil {
+                            case "fork-shadow":
+                                forkScore += 1
+                            case "knife-shadow":
+                                knifeScore += 1
+                            case "spoon-shadow":
+                                spoonScore += 1
+                            default:
+                                break
+                            }
+                        } else {
+                            self.dragAmount = .zero
+                        }
                     }
-                
             )
     }
+
     
     //getRandomUtensil- Returns a new random utensil image each call
     func getRandomUtensil() -> String {
@@ -63,6 +80,6 @@ struct Utensil: View {
 
 struct Utensil_Previews: PreviewProvider {
     static var previews: some View {
-        Utensil()
+        Utensil(utensil: "fork-shadow", forkScore: .constant(10), knifeScore: .constant(10), spoonScore: .constant(10), totalScore: .constant(30))
     }
 }

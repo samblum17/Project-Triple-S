@@ -14,6 +14,18 @@
 		E4CA095D25491D3500C8993B /* Project_Triple_STests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA095C25491D3500C8993B /* Project_Triple_STests.swift */; };
 		E4CA096825491D3500C8993B /* Project_Triple_SUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA096725491D3500C8993B /* Project_Triple_SUITests.swift */; };
 		E4CA09792549212E00C8993B /* SortingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA09782549212E00C8993B /* SortingCenter.swift */; };
+		E4CA098225492FD800C8993B /* Utensil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA098125492FD800C8993B /* Utensil.swift */; };
+		E4CA099A254940E700C8993B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA0999254940E700C8993B /* AppDelegate.swift */; };
+		E4CA099C254940E700C8993B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA099B254940E700C8993B /* ContentView.swift */; };
+		E4CA099E254940EA00C8993B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CA099D254940EA00C8993B /* Assets.xcassets */; };
+		E4CA09A1254940EA00C8993B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CA09A0254940EA00C8993B /* Preview Assets.xcassets */; };
+		E4CA09A4254940EA00C8993B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4CA09A2254940EA00C8993B /* Main.storyboard */; };
+		E4CA09B0254940EA00C8993B /* Project_Triple_S_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA09AF254940EA00C8993B /* Project_Triple_S_MacTests.swift */; };
+		E4CA09BB254940EA00C8993B /* Project_Triple_S_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA09BA254940EA00C8993B /* Project_Triple_S_MacUITests.swift */; };
+		E4CA09DA2549417700C8993B /* Utensil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA098125492FD800C8993B /* Utensil.swift */; };
+		E4CA09DC2549417700C8993B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CA094E25491D3500C8993B /* Assets.xcassets */; };
+		E4CA09EF254941AF00C8993B /* SortingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA09782549212E00C8993B /* SortingCenter.swift */; };
+		E4CA0A092549466800C8993B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA0A082549466700C8993B /* StartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +43,20 @@
 			remoteGlobalIDString = E4CA094625491D3200C8993B;
 			remoteInfo = "Project-Triple-S";
 		};
+		E4CA09AC254940EA00C8993B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4CA093F25491D3100C8993B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4CA0996254940E700C8993B;
+			remoteInfo = "Project-Triple-S-Mac";
+		};
+		E4CA09B7254940EA00C8993B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4CA093F25491D3100C8993B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4CA0996254940E700C8993B;
+			remoteInfo = "Project-Triple-S-Mac";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +73,23 @@
 		E4CA096725491D3500C8993B /* Project_Triple_SUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Triple_SUITests.swift; sourceTree = "<group>"; };
 		E4CA096925491D3500C8993B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4CA09782549212E00C8993B /* SortingCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingCenter.swift; sourceTree = "<group>"; };
+		E4CA098125492FD800C8993B /* Utensil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utensil.swift; sourceTree = "<group>"; };
+		E4CA098625493D8D00C8993B /* Project-Triple-S.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project-Triple-S.entitlements"; sourceTree = "<group>"; };
+		E4CA0997254940E700C8993B /* Project-Triple-S-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Triple-S-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4CA0999254940E700C8993B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E4CA099B254940E700C8993B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E4CA099D254940EA00C8993B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E4CA09A0254940EA00C8993B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E4CA09A3254940EA00C8993B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E4CA09A5254940EA00C8993B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4CA09A6254940EA00C8993B /* Project_Triple_S_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project_Triple_S_Mac.entitlements; sourceTree = "<group>"; };
+		E4CA09AB254940EA00C8993B /* Project-Triple-S-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-Triple-S-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4CA09AF254940EA00C8993B /* Project_Triple_S_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Triple_S_MacTests.swift; sourceTree = "<group>"; };
+		E4CA09B1254940EA00C8993B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4CA09B6254940EA00C8993B /* Project-Triple-S-MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-Triple-S-MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4CA09BA254940EA00C8993B /* Project_Triple_S_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Triple_S_MacUITests.swift; sourceTree = "<group>"; };
+		E4CA09BC254940EA00C8993B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4CA0A082549466700C8993B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +114,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E4CA0994254940E700C8993B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4CA09A8254940EA00C8993B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4CA09B3254940EA00C8993B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,8 +142,11 @@
 			isa = PBXGroup;
 			children = (
 				E4CA094925491D3200C8993B /* Project-Triple-S */,
+				E4CA0998254940E700C8993B /* Project-Triple-S-Mac */,
 				E4CA095B25491D3500C8993B /* Project-Triple-STests */,
 				E4CA096625491D3500C8993B /* Project-Triple-SUITests */,
+				E4CA09AE254940EA00C8993B /* Project-Triple-S-MacTests */,
+				E4CA09B9254940EA00C8993B /* Project-Triple-S-MacUITests */,
 				E4CA094825491D3200C8993B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +157,9 @@
 				E4CA094725491D3200C8993B /* Project-Triple-S.app */,
 				E4CA095825491D3500C8993B /* Project-Triple-STests.xctest */,
 				E4CA096325491D3500C8993B /* Project-Triple-SUITests.xctest */,
+				E4CA0997254940E700C8993B /* Project-Triple-S-Mac.app */,
+				E4CA09AB254940EA00C8993B /* Project-Triple-S-MacTests.xctest */,
+				E4CA09B6254940EA00C8993B /* Project-Triple-S-MacUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +167,7 @@
 		E4CA094925491D3200C8993B /* Project-Triple-S */ = {
 			isa = PBXGroup;
 			children = (
+				E4CA098625493D8D00C8993B /* Project-Triple-S.entitlements */,
 				E4CA097D2549213D00C8993B /* Views */,
 				E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */,
 				E4CA094E25491D3500C8993B /* Assets.xcassets */,
@@ -136,9 +207,51 @@
 			isa = PBXGroup;
 			children = (
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
+				E4CA0A082549466700C8993B /* StartView.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
+				E4CA098125492FD800C8993B /* Utensil.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		E4CA0998254940E700C8993B /* Project-Triple-S-Mac */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA0999254940E700C8993B /* AppDelegate.swift */,
+				E4CA099B254940E700C8993B /* ContentView.swift */,
+				E4CA099D254940EA00C8993B /* Assets.xcassets */,
+				E4CA09A2254940EA00C8993B /* Main.storyboard */,
+				E4CA09A5254940EA00C8993B /* Info.plist */,
+				E4CA09A6254940EA00C8993B /* Project_Triple_S_Mac.entitlements */,
+				E4CA099F254940EA00C8993B /* Preview Content */,
+			);
+			path = "Project-Triple-S-Mac";
+			sourceTree = "<group>";
+		};
+		E4CA099F254940EA00C8993B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA09A0254940EA00C8993B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E4CA09AE254940EA00C8993B /* Project-Triple-S-MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA09AF254940EA00C8993B /* Project_Triple_S_MacTests.swift */,
+				E4CA09B1254940EA00C8993B /* Info.plist */,
+			);
+			path = "Project-Triple-S-MacTests";
+			sourceTree = "<group>";
+		};
+		E4CA09B9254940EA00C8993B /* Project-Triple-S-MacUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA09BA254940EA00C8993B /* Project_Triple_S_MacUITests.swift */,
+				E4CA09BC254940EA00C8993B /* Info.plist */,
+			);
+			path = "Project-Triple-S-MacUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +310,59 @@
 			productReference = E4CA096325491D3500C8993B /* Project-Triple-SUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		E4CA0996254940E700C8993B /* Project-Triple-S-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4CA09BD254940EA00C8993B /* Build configuration list for PBXNativeTarget "Project-Triple-S-Mac" */;
+			buildPhases = (
+				E4CA0993254940E700C8993B /* Sources */,
+				E4CA0994254940E700C8993B /* Frameworks */,
+				E4CA0995254940E700C8993B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Project-Triple-S-Mac";
+			productName = "Project-Triple-S-Mac";
+			productReference = E4CA0997254940E700C8993B /* Project-Triple-S-Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E4CA09AA254940EA00C8993B /* Project-Triple-S-MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4CA09C0254940EA00C8993B /* Build configuration list for PBXNativeTarget "Project-Triple-S-MacTests" */;
+			buildPhases = (
+				E4CA09A7254940EA00C8993B /* Sources */,
+				E4CA09A8254940EA00C8993B /* Frameworks */,
+				E4CA09A9254940EA00C8993B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4CA09AD254940EA00C8993B /* PBXTargetDependency */,
+			);
+			name = "Project-Triple-S-MacTests";
+			productName = "Project-Triple-S-MacTests";
+			productReference = E4CA09AB254940EA00C8993B /* Project-Triple-S-MacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E4CA09B5254940EA00C8993B /* Project-Triple-S-MacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4CA09C3254940EA00C8993B /* Build configuration list for PBXNativeTarget "Project-Triple-S-MacUITests" */;
+			buildPhases = (
+				E4CA09B2254940EA00C8993B /* Sources */,
+				E4CA09B3254940EA00C8993B /* Frameworks */,
+				E4CA09B4254940EA00C8993B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4CA09B8254940EA00C8993B /* PBXTargetDependency */,
+			);
+			name = "Project-Triple-S-MacUITests";
+			productName = "Project-Triple-S-MacUITests";
+			productReference = E4CA09B6254940EA00C8993B /* Project-Triple-S-MacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,6 +383,17 @@
 						CreatedOnToolsVersion = 12.1;
 						TestTargetID = E4CA094625491D3200C8993B;
 					};
+					E4CA0996254940E700C8993B = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					E4CA09AA254940EA00C8993B = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = E4CA0996254940E700C8993B;
+					};
+					E4CA09B5254940EA00C8993B = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = E4CA0996254940E700C8993B;
+					};
 				};
 			};
 			buildConfigurationList = E4CA094225491D3100C8993B /* Build configuration list for PBXProject "Project-Triple-S" */;
@@ -233,8 +410,11 @@
 			projectRoot = "";
 			targets = (
 				E4CA094625491D3200C8993B /* Project-Triple-S */,
+				E4CA0996254940E700C8993B /* Project-Triple-S-Mac */,
 				E4CA095725491D3500C8993B /* Project-Triple-STests */,
 				E4CA096225491D3500C8993B /* Project-Triple-SUITests */,
+				E4CA09AA254940EA00C8993B /* Project-Triple-S-MacTests */,
+				E4CA09B5254940EA00C8993B /* Project-Triple-S-MacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -263,6 +443,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E4CA0995254940E700C8993B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4CA09A4254940EA00C8993B /* Main.storyboard in Resources */,
+				E4CA09A1254940EA00C8993B /* Preview Assets.xcassets in Resources */,
+				E4CA09DC2549417700C8993B /* Assets.xcassets in Resources */,
+				E4CA099E254940EA00C8993B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4CA09A9254940EA00C8993B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4CA09B4254940EA00C8993B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -270,6 +475,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CA098225492FD800C8993B /* Utensil.swift in Sources */,
+				E4CA0A092549466800C8993B /* StartView.swift in Sources */,
 				E4CA094D25491D3200C8993B /* ContentView.swift in Sources */,
 				E4CA094B25491D3200C8993B /* Project_Triple_SApp.swift in Sources */,
 				E4CA09792549212E00C8993B /* SortingCenter.swift in Sources */,
@@ -292,6 +499,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E4CA0993254940E700C8993B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4CA099C254940E700C8993B /* ContentView.swift in Sources */,
+				E4CA09DA2549417700C8993B /* Utensil.swift in Sources */,
+				E4CA09EF254941AF00C8993B /* SortingCenter.swift in Sources */,
+				E4CA099A254940E700C8993B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4CA09A7254940EA00C8993B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4CA09B0254940EA00C8993B /* Project_Triple_S_MacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4CA09B2254940EA00C8993B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4CA09BB254940EA00C8993B /* Project_Triple_S_MacUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -305,7 +539,28 @@
 			target = E4CA094625491D3200C8993B /* Project-Triple-S */;
 			targetProxy = E4CA096425491D3500C8993B /* PBXContainerItemProxy */;
 		};
+		E4CA09AD254940EA00C8993B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E4CA0996254940E700C8993B /* Project-Triple-S-Mac */;
+			targetProxy = E4CA09AC254940EA00C8993B /* PBXContainerItemProxy */;
+		};
+		E4CA09B8254940EA00C8993B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E4CA0996254940E700C8993B /* Project-Triple-S-Mac */;
+			targetProxy = E4CA09B7254940EA00C8993B /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E4CA09A2254940EA00C8993B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4CA09A3254940EA00C8993B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E4CA096A25491D3500C8993B /* Debug */ = {
@@ -429,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Project-Triple-S/Project-Triple-S.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Project-Triple-S/Preview Content\"";
 				DEVELOPMENT_TEAM = AXQRK9KY57;
@@ -441,6 +697,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -451,6 +708,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Project-Triple-S/Project-Triple-S.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Project-Triple-S/Preview Content\"";
 				DEVELOPMENT_TEAM = AXQRK9KY57;
@@ -463,6 +721,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -552,6 +811,146 @@
 			};
 			name = Release;
 		};
+		E4CA09BE254940EA00C8993B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Project-Triple-S-Mac/Project_Triple_S_Mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Project-Triple-S-Mac/Preview Content\"";
+				DEVELOPMENT_TEAM = AXQRK9KY57;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Project-Triple-S-Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E4CA09BF254940EA00C8993B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Project-Triple-S-Mac/Project_Triple_S_Mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Project-Triple-S-Mac/Preview Content\"";
+				DEVELOPMENT_TEAM = AXQRK9KY57;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Project-Triple-S-Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E4CA09C1254940EA00C8993B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AXQRK9KY57;
+				INFOPLIST_FILE = "Project-Triple-S-MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project-Triple-S-Mac.app/Contents/MacOS/Project-Triple-S-Mac";
+			};
+			name = Debug;
+		};
+		E4CA09C2254940EA00C8993B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AXQRK9KY57;
+				INFOPLIST_FILE = "Project-Triple-S-MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project-Triple-S-Mac.app/Contents/MacOS/Project-Triple-S-Mac";
+			};
+			name = Release;
+		};
+		E4CA09C4254940EA00C8993B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AXQRK9KY57;
+				INFOPLIST_FILE = "Project-Triple-S-MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Project-Triple-S-Mac";
+			};
+			name = Debug;
+		};
+		E4CA09C5254940EA00C8993B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AXQRK9KY57;
+				INFOPLIST_FILE = "Project-Triple-S-MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Project-Triple-S-Mac";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -587,6 +986,33 @@
 			buildConfigurations = (
 				E4CA097325491D3500C8993B /* Debug */,
 				E4CA097425491D3500C8993B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E4CA09BD254940EA00C8993B /* Build configuration list for PBXNativeTarget "Project-Triple-S-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4CA09BE254940EA00C8993B /* Debug */,
+				E4CA09BF254940EA00C8993B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E4CA09C0254940EA00C8993B /* Build configuration list for PBXNativeTarget "Project-Triple-S-MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4CA09C1254940EA00C8993B /* Debug */,
+				E4CA09C2254940EA00C8993B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E4CA09C3254940EA00C8993B /* Build configuration list for PBXNativeTarget "Project-Triple-S-MacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4CA09C4254940EA00C8993B /* Debug */,
+				E4CA09C5254940EA00C8993B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

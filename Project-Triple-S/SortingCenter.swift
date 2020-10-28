@@ -9,6 +9,7 @@ import SwiftUI
 
 //Gameplay view
 struct SortingCenter: View {
+    @Binding var highScore: Int
     var body: some View {
         VStack {
             HStack(spacing: 100) {
@@ -21,9 +22,7 @@ struct SortingCenter: View {
                 .aspectRatio(contentMode: .fit)
                 .edgesIgnoringSafeArea(.horizontal)
             HStack {
-                Image(getRandomUtensil())
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                Utensil(dragAmount: CGSize.zero, utensil: "fork-shadow")
                 ZStack{
                     Image("plate")
                         .resizable()
@@ -36,16 +35,11 @@ struct SortingCenter: View {
         }.edgesIgnoringSafeArea(.horizontal)
     }
     
-    //getRandomUtensil- Returns a new random utensil image each call
-    func getRandomUtensil() -> String {
-        let utensils: Set<String> = ["fork-shadow", "knife-shadow", "spoon-shadow"]
-        //Below is always going to return a random element and never going to default to fork but, just for my own sanity, I dont want to force unwrap in such a seriously intense game. There's a lot at stake here
-        return utensils.randomElement() ?? "fork"
-    }
+   
 }
 
 struct SortingCenter_Previews: PreviewProvider {
     static var previews: some View {
-        SortingCenter()
+        SortingCenter(highScore: .constant(100))
     }
 }

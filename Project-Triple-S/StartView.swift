@@ -13,20 +13,20 @@ struct StartView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Text("Silverware Sorter").font(.largeTitle).padding(.top)
-                Image("angled-group").resizable()
+                Text("Silverware Sorter").font(.largeTitle).bold()
+                    .padding(.top)
+                Image("angled-group")
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
-                Text("The dishes are ready.")
-                    .font(.title2)
+                Text("The dishes are ready.").font(.title2)
                     .multilineTextAlignment(.center)
-                Text("Are you?")
-                    .font(.title2).italic()
+                Text("Are you?").font(.title2).italic()
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
                 Spacer()
             //Play button navigates to the Sorting Center. Where it all happens.
                 NavigationLink(
-                    destination: SortingCenter(highScore: $highScore)              .navigationBarBackButtonHidden(true)
+                    destination: SortingCenter(highScore: $highScore)             .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)
 ,
                     label: {

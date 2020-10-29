@@ -7,13 +7,7 @@
 
 import SwiftUI
 
-enum DragState {
-    case unknown
-    case good
-    case bad
-}
-
-//View of a single utensil
+//View for a single utensil
 struct Utensil: View {
     @State var utensil: String
     static let fork = "fork-shadow"
@@ -60,7 +54,7 @@ struct Utensil: View {
                     }
             )
     }
-
+    
     
     //getRandomUtensil- Returns a new random utensil image each call
     func getRandomUtensil() -> String {
@@ -85,4 +79,11 @@ struct Utensil_Previews: PreviewProvider {
     static var previews: some View {
         Utensil(utensil: Utensil.fork, forkScore: .constant(10), knifeScore: .constant(10), spoonScore: .constant(10), totalScore: .constant(10))
     }
+}
+
+//Enum to manage state of current utensil's drop site
+enum DragState {
+    case unknown
+    case good
+    case bad
 }

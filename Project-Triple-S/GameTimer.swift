@@ -9,20 +9,20 @@ import SwiftUI
 
 //Timer for game
 struct GameTimer: View {
-        @State var timeRemaining = 17
-        let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-        var body: some View {
-            Text("\(timeRemaining)")
-                .onReceive(timer) { _ in
-                    if self.timeRemaining > 0 {
-                        self.timeRemaining -= 01
-                    }
+    @State var timeRemaining = 17
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var body: some View {
+        Text("\(timeRemaining)")
+            .onReceive(timer) { _ in
+                if self.timeRemaining > 0 {
+                    self.timeRemaining -= 01
                 }
-                .font(.title)
-                .foregroundColor(.yellow)
-        }
+            }
+            .font(.title)
+            .foregroundColor(.yellow)
     }
+}
 
 struct GameTimer_Previews: PreviewProvider {
     static var previews: some View {

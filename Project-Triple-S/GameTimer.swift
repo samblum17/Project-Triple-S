@@ -16,7 +16,7 @@ struct GameTimer: View {
             Text("\(timeRemaining)")
                 .onReceive(timer) { _ in
                     if self.timeRemaining > 0 {
-                        self.timeRemaining -= 1
+                        self.timeRemaining -= 01
                     }
                 }
                 .font(.title)

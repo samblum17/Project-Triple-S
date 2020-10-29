@@ -11,7 +11,7 @@ import SwiftUI
 struct SortingCenter: View {
     @State private var drawerFrames = [CGRect](repeating: .zero, count: 3)
     @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
-    @State private var possibleUtensils: [String] = ["fork-shadow", "knife-shadow", "spoon-shadow"]
+    @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
     @State private var timeRemaining = 17
     @State private var gameTimer = GameTimer()
     @State private var forksHidden = true
@@ -24,7 +24,7 @@ struct SortingCenter: View {
     @Binding var highScore: Int
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             HStack(spacing: 100) {
                 Text("\(forkScore)").font(.title2)
                 Text("\(knifeScore)").font(.title2)
@@ -35,7 +35,7 @@ struct SortingCenter: View {
                     ForEach(0..<3) { utensil in
                         Image(drawers[utensil])
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .scaledToFit()
                             .edgesIgnoringSafeArea(.all)
                             .overlay(GeometryReader { location in
                                 Color.clear
@@ -47,20 +47,33 @@ struct SortingCenter: View {
                     }
                 }
             }
-            HStack {
+            HStack(alignment: .bottom, spacing: 0) {
+                VStack{
+                    ZStack{
+                        Image("plate")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                        gameTimer
+                    }
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Image(systemName: "pause.circle.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.gray)
+                        .shadow(radius: 10)
+                })
+                }.padding(.bottom, 55)
                 ZStack{
                     ForEach(0..<5) { _ in
                         Utensil(utensil: getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, onChanged: self.utensilMoved)
                     }
                 }
-                ZStack{
-                    Image("plate")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                    gameTimer
-                }
-            }
-        }.edgesIgnoringSafeArea(.horizontal)
+                Spacer(minLength: 50)
+
+
+            }.scaledToFit()
+            .edgesIgnoringSafeArea(.horizontal)
+        }
     }
     
     func utensilMoved(location: CGPoint, dropUtensil: String) -> DragState {
@@ -77,9 +90,9 @@ struct SortingCenter: View {
     
     //getRandomUtensil- Returns a new random utensil image each call
     func getRandomUtensil() -> String {
-        let utensils: Set<String> = ["fork-shadow", "knife-shadow", "spoon-shadow"]
+        let utensils: Set<String> = [Utensil.fork, Utensil.knife, Utensil.spoon]
         //Below is always going to return a random element and never going to default to fork but, just for my own sanity, I dont want to force unwrap in such a seriously intense game. There's a lot at stake here
-        return utensils.randomElement() ?? "fork-shadow"
+        return utensils.randomElement() ?? Utensil.fork
     }
     
     func utensilDropped(location: CGPoint, dropUtensil: String) {

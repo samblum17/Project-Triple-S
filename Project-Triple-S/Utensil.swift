@@ -18,9 +18,13 @@ struct Utensil: View {
     @Binding var spoonScore: Int
     @Binding var totalScore: Int
     
+    @Binding var drawerFrames: [CGRect]
     @State private var dragAmount = CGSize.zero
     @State private var dragState = DragState.unknown
+    @State var dropped: Bool = false
+    
     var onChanged: ((CGPoint, String) -> DragState)?
+    
     
     var body: some View {
         Image(self.utensil)
@@ -29,35 +33,50 @@ struct Utensil: View {
             .offset(dragAmount)
             .zIndex(dragAmount == .zero ? 0 : 1)
             .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
+            .zIndex(1)
             .gesture (
                 DragGesture(coordinateSpace: .global)
                     .onChanged {
                         self.dragAmount = CGSize(width: $0.translation.width, height: $0.translation.height)
                         self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
+                        //                        let heightDifference = abs($0.translation - drawerFrames[0].size)
                     }
-                    .onEnded { _ in
-                        if dragState == .good {
-                            totalScore += 1
-                            switch self.utensil {
-                            case Utensil.fork:
-                                forkScore += 1
-                            case Utensil.knife:
-                                knifeScore += 1
-                            case Utensil.spoon:
-                                spoonScore += 1
-                            default:
-                                break
+                    .onEnded { value in
+                        withAnimation(.spring()) {
+                            if dragState == .good {
+                                totalScore += 1
+                                switch self.utensil {
+                                case Utensil.fork:
+                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+                                    forkScore += 1
+                                    dropped = true
+                                case Utensil.knife:
+                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+                                    knifeScore += 1
+                                    dropped = true
+                                case Utensil.spoon:
+                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+                                    spoonScore += 1
+                                    dropped = true
+                                default:
+                                    break
+                                }
+                            } else {
+                                self.dragAmount = .zero
                             }
-                        } else {
-                            self.dragAmount = .zero
                         }
                     }
             )
+            .allowsHitTesting(!dropped)
     }
     
     
+    
+    
+    
+    
     //getRandomUtensil- Returns a new random utensil image each call
-    func getRandomUtensil() -> String {
+    static func getRandomUtensil() -> String {
         let utensils: Set<String> = [Utensil.fork, Utensil.knife, Utensil.spoon]
         //Below is always going to return a random element and never going to default to fork but, just for my own sanity, I dont want to force unwrap in such a seriously intense game. There's a lot at stake here
         return utensils.randomElement() ?? Utensil.fork
@@ -75,11 +94,11 @@ struct Utensil: View {
     }
 }
 
-struct Utensil_Previews: PreviewProvider {
-    static var previews: some View {
-        Utensil(utensil: Utensil.fork, forkScore: .constant(10), knifeScore: .constant(10), spoonScore: .constant(10), totalScore: .constant(10))
-    }
-}
+//struct Utensil_Previews: PreviewProvider {
+//    static var previews: some View {
+////        Utensil(utensil: Utensil.fork, drawerFrames: .constant()
+//    }
+//}
 
 //Enum to manage state of current utensil's drop site
 enum DragState {

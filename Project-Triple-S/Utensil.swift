@@ -17,6 +17,10 @@ struct Utensil: View {
     @Binding var knifeScore: Int
     @Binding var spoonScore: Int
     @Binding var totalScore: Int
+    @State private var location: CGPoint
+    @State private var lastLocation: CGPoint
+    @GestureState private var dragState2 =  DragState2.inactive
+
     
     @Binding var drawerFrames: [CGRect]
     @State private var dragAmount = CGSize.zero
@@ -27,47 +31,76 @@ struct Utensil: View {
     
     
     var body: some View {
+        let drag = DragGesture(minimumDistance: 0, coordinateSpace: .global)
+            .updating($dragState2) { drag, state, transaction in
+                state = .dragging(translation: drag.translation)
+            }.onEnded{ value in
+                let startLoc = value.startLocation
+                let endLoc = value.location
+                
+                if endLoc.x == drawerFrames[0].midX && endLoc.y == drawerFrames[0].midY {
+                    
+                }
+            }
+            .onChanged{ value in
+                self.lastLocation = value.startLocation
+                self.dragState = self.onChanged?(value.location, self.utensil) ?? .unknown
+                
+    }
+        
+        
+        return Group {
         Image(self.utensil)
             .resizable()
             .scaledToFill()
-            .offset(dragAmount)
+            .if(dropped){$0.offset(dragAmount)}
+            .position(dropped ? (CGPoint(x: 10, y: 10)) : (CGPoint(x: 10, y: 10)))
             .zIndex(dragAmount == .zero ? 0 : 1)
             .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
             .zIndex(1)
-            .gesture (
-                DragGesture(coordinateSpace: .global)
-                    .onChanged {
-                        self.dragAmount = CGSize(width: $0.translation.width, height: $0.translation.height)
-                        self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
-                        //                        let heightDifference = abs($0.translation - drawerFrames[0].size)
-                    }
-                    .onEnded { value in
-                        withAnimation(.spring()) {
-                            if dragState == .good {
-                                totalScore += 1
-                                switch self.utensil {
-                                case Utensil.fork:
-                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
-                                    forkScore += 1
-                                    dropped = true
-                                case Utensil.knife:
-                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
-                                    knifeScore += 1
-                                    dropped = true
-                                case Utensil.spoon:
-                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
-                                    spoonScore += 1
-                                    dropped = true
-                                default:
-                                    break
-                                }
-                            } else {
-                                self.dragAmount = .zero
-                            }
-                        }
-                    }
-            )
-            .allowsHitTesting(!dropped)
+
+        }
+                
+                
+                
+//                DragGesture(coordinateSpace: .global)
+//                    .onChanged {
+//                        self.dragAmount = CGSize(width: $0.translation.width, height: $0.translation.height)
+//                        self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
+//                        //                        let heightDifference = abs($0.translation - drawerFrames[0].size)
+//                    }
+//                    .onEnded { value in
+//                        withAnimation(.spring()) {
+//                            if dragState == .good {
+//                                totalScore += 1
+//                                switch self.utensil {
+//                                case Utensil.fork:
+//                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+//                                    forkScore += 1
+//                                    dropped = true
+//                                case Utensil.knife:
+//                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+//                                    knifeScore += 1
+//                                    dropped = true
+//                                case Utensil.spoon:
+//                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+//                                    spoonScore += 1
+//                                    dropped = true
+//                                default:
+//                                    break
+//                                }
+//                            } else {
+//                                self.dragAmount = .zero
+//                            }
+//                        }
+//                    }
+//            )
+//            .allowsHitTesting(!dropped)
+        
+        
+        
+        
+        
     }
     
     
@@ -105,4 +138,41 @@ enum DragState {
     case unknown
     case good
     case bad
+}
+
+enum DragState2 {
+    case inactive
+    case dragging(translation: CGSize)
+    
+    var translation: CGSize {
+        switch self {
+        case .inactive:
+            return .zero
+        case .dragging(let translation):
+            return translation
+        }
+    }
+    
+    var isDragging: Bool {
+        switch self {
+        case .inactive:
+            return false
+        case .dragging:
+            return true
+        }
+    }
+}
+
+extension View {
+  @ViewBuilder
+  func `if`<Transform: View>(
+    _ condition: Bool,
+    transform: (Self) -> Transform
+  ) -> some View {
+    if condition {
+      transform(self)
+    } else {
+      self
+    }
+  }
 }

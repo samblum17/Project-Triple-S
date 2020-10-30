@@ -22,15 +22,18 @@ struct Utensil: View {
     @State private var dragAmount = CGSize.zero
     @State private var dragState = DragState.unknown
     @State var dropped: Bool = false
+    @State private var endPos = CGPoint.zero
     
     var onChanged: ((CGPoint, String) -> DragState)?
+    var onEnded: ((CGPoint, String) -> CGPoint)?
     
     
     var body: some View {
         Image(self.utensil)
             .resizable()
-            .scaledToFill()
             .offset(dragAmount)
+            .if(dropped){$0.position(endPos)}
+            .scaledToFill()
             .zIndex(dragAmount == .zero ? 0 : 1)
             .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
             .zIndex(1)
@@ -39,12 +42,13 @@ struct Utensil: View {
                     .onChanged {
                         self.dragAmount = CGSize(width: $0.translation.width, height: $0.translation.height)
                         self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
-                        //                        let heightDifference = abs($0.translation - drawerFrames[0].size)
+                        
                     }
                     .onEnded { value in
                         withAnimation(.spring()) {
                             if dragState == .good {
                                 totalScore += 1
+                                endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                                 switch self.utensil {
                                 case Utensil.fork:
                                     self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
@@ -63,11 +67,12 @@ struct Utensil: View {
                                 }
                             } else {
                                 self.dragAmount = .zero
+                                
                             }
                         }
                     }
             )
-            .allowsHitTesting(!dropped)
+            .allowsHitTesting(!dropped) //Disable dragging once dropped
     }
     
     
@@ -82,6 +87,7 @@ struct Utensil: View {
         return utensils.randomElement() ?? Utensil.fork
     }
     
+    //For testing
     var dragColor:Color {
         switch dragState{
         case .unknown:
@@ -105,4 +111,19 @@ enum DragState {
     case unknown
     case good
     case bad
+}
+
+//View extension for conditional modifiers
+extension View {
+    @ViewBuilder
+    func `if`<Transform: View>(
+        _ condition: Bool,
+        transform: (Self) -> Transform
+    ) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }

@@ -13,8 +13,7 @@ struct SortingCenter: View {
     @State var drawerFrames = [CGRect](repeating: .zero, count: 3)
     @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
     @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
-//    @State var unsortedUtensils: [Utensil] = [(Utensil(utensil: Utensil.getRandomUtensil(), onChanged: utensilMoved))]
-
+    
     //Variables to manage gameplay
     @State private var timeRemaining = 17
     @State private var gameTimer = GameTimer()
@@ -26,21 +25,27 @@ struct SortingCenter: View {
     
     
     var body: some View {
-        //All views inside this VStack
-        VStack(alignment: .center) {
-            
-            //Scores
-            HStack(spacing: 100) {
-                Text("\(forkScore)").font(.title2)
-                Text("\(knifeScore)").font(.title2)
-                Text("\(spoonScore)").font(.title2)
-            }.padding()
-            
-            
-            //Drawers
-            ZStack {
-                HStack(spacing: 0) {
-                    ForEach(0..<3) { utensil in
+        //        var unsortedUtensils: [Utensil]
+        //        ForEach(0..<10) { _ in
+        //           unsortedUtensils.append(Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved))
+        //        }
+        
+        return Group {
+            //All views inside this VStack
+            VStack(alignment: .center) {
+                
+                //Scores
+                HStack(spacing: 100) {
+                    Text("\(forkScore)").font(.title2)
+                    Text("\(knifeScore)").font(.title2)
+                    Text("\(spoonScore)").font(.title2)
+                }.padding()
+                
+                
+                //Drawers
+                ZStack {
+                    HStack(spacing: 0) {
+                        ForEach(0..<3) { utensil in
                             Image(drawers[utensil])
                                 .resizable()
                                 .scaledToFit()
@@ -50,51 +55,51 @@ struct SortingCenter: View {
                                     Color.clear
                                         .onAppear{
                                             self.drawerFrames[utensil] = location.frame(in: .global)
-                                        
+                                            
                                         }
                                 }
                                 )
+                        }
                     }
                 }
-            }
-            
-            //Timer and pause
-            HStack(alignment: .bottom, spacing: 0) {
-                VStack{
+                
+                //Timer and pause
+                HStack(alignment: .bottom, spacing: 0) {
+                    VStack{
+                        ZStack{
+                            Image("plate")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                            gameTimer
+                        }
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                            Image(systemName: "pause.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.gray)
+                                .shadow(radius: 10)
+                        })
+                    }.padding(.bottom, 55)
+                    
+                    
+                    //Utensils to sort
                     ZStack{
-                        Image("plate")
-                            .resizable()
-                            .frame(width: 60, height: 60)
-                        gameTimer
+                        ForEach(0..<10) { _ in
+                            Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved, onEnded: utensilDropped)
+                        }
+                        //                    ForEach(0..<unsortedUtensils.count) { num in
+                        //                        unsortedUtensils[num]
+                        //                    }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        Image(systemName: "pause.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(.gray)
-                            .shadow(radius: 10)
-                    })
-                }.padding(.bottom, 55)
-                
-                
-                //Utensils to sort
-                ZStack{
-                    ForEach(0..<10) { _ in
-                        Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved)
-                    }
-//                    ForEach(0..<unsortedUtensils.count) { num in
-//                        unsortedUtensils[num]
-//                    }
-                }
-                Spacer(minLength: 50)
-                
-                
-            }.scaledToFit()
-            .edgesIgnoringSafeArea(.horizontal)
+                    Spacer(minLength: 50)
+                    
+                    
+                }.scaledToFit()
+                .edgesIgnoringSafeArea(.horizontal)
+            }
         }
     }
     
-
     
     //Helper function to track movement of current utensil
     func utensilMoved(location: CGPoint, dropUtensil: String) -> DragState {
@@ -112,15 +117,16 @@ struct SortingCenter: View {
     
     
     //Helper function to manage dropping of utensil into drawer
-    func utensilDropped(location: CGPoint, dropUtensil: String) {
+    func utensilDropped(location: CGPoint, dropUtensil: String) -> CGPoint {
         if let dropZone = drawerFrames.firstIndex(where: { $0.contains(location)}) {
-
+            let ret = CGPoint(x: drawerFrames[dropZone].midX, y: drawerFrames[dropZone].midY)
+            return ret
+        } else {
+            return CGPoint.zero
         }
         
     }
-    
 }
-
 
 //Previews
 struct SortingCenter_Previews: PreviewProvider {

@@ -14,6 +14,7 @@ struct SortingCenter: View {
     @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
     @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
     
+    @State private var unsortedUtensils: [AnyView] = []
     //Variables to manage gameplay
     @State private var timeRemaining = 17
     @State private var gameTimer = GameTimer()
@@ -25,7 +26,6 @@ struct SortingCenter: View {
     
     
     var body: some View {
-        //        var unsortedUtensils: [Utensil]
         //        ForEach(0..<10) { _ in
         //           unsortedUtensils.append(Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved))
         //        }
@@ -55,7 +55,6 @@ struct SortingCenter: View {
                                     Color.clear
                                         .onAppear{
                                             self.drawerFrames[utensil] = location.frame(in: .global)
-                                            
                                         }
                                 }
                                 )
@@ -72,7 +71,8 @@ struct SortingCenter: View {
                                 .frame(width: 60, height: 60)
                             gameTimer
                         }
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                        Button(action: {
+                        }, label: {
                             Image(systemName: "pause.circle.fill")
                                 .resizable()
                                 .frame(width: 40, height: 40)
@@ -84,17 +84,19 @@ struct SortingCenter: View {
                     
                     //Utensils to sort
                     ZStack{
-                        ForEach(0..<10) { _ in
+                        
+                        ForEach(0..<7) { _ in
                             Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved, onEnded: utensilDropped)
                         }
-                        //                    ForEach(0..<unsortedUtensils.count) { num in
-                        //                        unsortedUtensils[num]
-                        //                    }
                     }
+                    .allowsHitTesting(timeRemaining > 0)
                     Spacer(minLength: 50)
                     
                     
-                }.scaledToFit()
+                }.onAppear {
+                    startGame()
+                }
+                .scaledToFit()
                 .edgesIgnoringSafeArea(.horizontal)
             }
         }
@@ -120,12 +122,28 @@ struct SortingCenter: View {
     func utensilDropped(location: CGPoint, dropUtensil: String) -> CGPoint {
         if let dropZone = drawerFrames.firstIndex(where: { $0.contains(location)}) {
             let ret = CGPoint(x: drawerFrames[dropZone].midX, y: drawerFrames[dropZone].midY)
+            for _ in 0...5 {
+                unsortedUtensils.append(AnyView(Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved, onEnded: utensilDropped)))
+            }
             return ret
         } else {
             return CGPoint.zero
         }
         
     }
+    
+    func startGame() {
+        forkScore = 0
+        knifeScore = 0
+        spoonScore = 0
+        totalScore = 0
+        timeRemaining = 17
+
+        for _ in 0...10 {
+            unsortedUtensils.append(AnyView(Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved, onEnded: utensilDropped)))
+        }
+    }
+    
 }
 
 //Previews

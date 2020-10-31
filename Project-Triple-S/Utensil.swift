@@ -9,6 +9,8 @@ import SwiftUI
 
 //View for a single utensil
 struct Utensil: View {
+    var id = UUID()
+
     @State var utensil: String
     static let fork = "fork-shadow"
     static let knife = "knife-shadow"
@@ -47,6 +49,7 @@ struct Utensil: View {
                     .onEnded { value in
                         withAnimation(.spring()) {
                             if dragState == .good {
+                                simpleSuccess()
                                 totalScore += 1
                                 endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                                 switch self.utensil {
@@ -66,6 +69,7 @@ struct Utensil: View {
                                     break
                                 }
                             } else {
+                                simpleFail()
                                 self.dragAmount = .zero
                                 
                             }
@@ -76,9 +80,17 @@ struct Utensil: View {
     }
     
     
+    //Haptic feedback
+    func simpleSuccess() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+    }
     
-    
-    
+    func simpleFail() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.error)
+    }
+
     
     //getRandomUtensil- Returns a new random utensil image each call
     static func getRandomUtensil() -> String {
@@ -99,12 +111,6 @@ struct Utensil: View {
         }
     }
 }
-
-//struct Utensil_Previews: PreviewProvider {
-//    static var previews: some View {
-////        Utensil(utensil: Utensil.fork, drawerFrames: .constant()
-//    }
-//}
 
 //Enum to manage state of current utensil's drop site
 enum DragState {
@@ -127,3 +133,11 @@ extension View {
         }
     }
 }
+
+
+
+//struct Utensil_Previews: PreviewProvider {
+//    static var previews: some View {
+////        Utensil(utensil: Utensil.fork, drawerFrames: .constant()
+//    }
+//}

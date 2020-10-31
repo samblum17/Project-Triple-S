@@ -27,6 +27,7 @@
 		E4CA09EF254941AF00C8993B /* SortingCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA09782549212E00C8993B /* SortingCenter.swift */; };
 		E4CA0A092549466800C8993B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA0A082549466700C8993B /* StartView.swift */; };
 		E4E1A7F32549E8EF0092A4BC /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */; };
+		E4FF5C4B254CB85100DA6923 /* RestartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF5C4A254CB85100DA6923 /* RestartButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		E4CA09BC254940EA00C8993B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4CA0A082549466700C8993B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
+		E4FF5C4A254CB85100DA6923 /* RestartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
 				E4CA0A082549466700C8993B /* StartView.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
+				E4FF5C4A254CB85100DA6923 /* RestartButton.swift */,
 				E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */,
 				E4CA098125492FD800C8993B /* Utensil.swift */,
 			);
@@ -481,6 +484,7 @@
 				E4CA098225492FD800C8993B /* Utensil.swift in Sources */,
 				E4CA0A092549466800C8993B /* StartView.swift in Sources */,
 				E4CA094D25491D3200C8993B /* ContentView.swift in Sources */,
+				E4FF5C4B254CB85100DA6923 /* RestartButton.swift in Sources */,
 				E4CA094B25491D3200C8993B /* Project_Triple_SApp.swift in Sources */,
 				E4CA09792549212E00C8993B /* SortingCenter.swift in Sources */,
 				E4E1A7F32549E8EF0092A4BC /* GameTimer.swift in Sources */,

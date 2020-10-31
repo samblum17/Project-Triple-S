@@ -19,6 +19,7 @@ struct SortingCenter: View {
     //Variables to manage gameplay
     @State private var timeRemaining = 17
     @State private var gameTimer = GameTimer()
+    @State private var pauseShowing = false
     @State var forkScore: Int = 0
     @State var knifeScore: Int = 0
     @State var spoonScore: Int = 0
@@ -36,7 +37,12 @@ struct SortingCenter: View {
         //        }
         
         return Group {
-            //All views inside this VStack
+            //ZStack used for pause menu overlay
+            ZStack{
+                if pauseShowing {
+                    PauseMenu(pauseShowing: $pauseShowing).zIndex(2.0)
+                }
+                //All views inside this ZStack
             VStack(alignment: .center) {
                 
                 //Scores
@@ -45,7 +51,6 @@ struct SortingCenter: View {
                     Text("\(knifeScore)").font(.title2)
                     Text("\(spoonScore)").font(.title2)
                 }.padding()
-                
                 
                 //Drawers
                 ZStack {
@@ -67,6 +72,7 @@ struct SortingCenter: View {
                         }
                     }.scaledToFit()
                     .coordinateSpace(name: drawerCoordinates)
+                    
                 }
                 
                 //Timer and pause
@@ -79,6 +85,8 @@ struct SortingCenter: View {
                             gameTimer
                         }
                         Button(action: {
+                            self.gameTimer.timer.upstream.connect().cancel()
+                            pauseShowing = true
                         }, label: {
                             Image(systemName: "pause.circle.fill")
                                 .resizable()
@@ -91,9 +99,9 @@ struct SortingCenter: View {
                     
                     //Utensils to sort
                     ZStack{
-                        
                         ForEach(0..<7) { _ in
                             Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
+                                .zIndex(pauseShowing ? 0 : 1)
                         }
                     }
                     .allowsHitTesting(timeRemaining > 0)
@@ -105,8 +113,9 @@ struct SortingCenter: View {
                 }
                 .scaledToFit()
                 .edgesIgnoringSafeArea(.horizontal)
+                
             }.coordinateSpace(name: vStackCoordinates)
-            
+            }
         }
     }
     

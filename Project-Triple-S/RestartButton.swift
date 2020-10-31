@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct RestartButton: View {
+    @Binding var pauseShowing: Bool
+    
     var action: (() -> Void)?
     
     var body: some View {
         Group {
             Button(action: {
                 self.action?()
+                pauseShowing = false
             }) {
-                Text("Reset Game")
-                    .font(.title2)
+                Text("Start Over")
+                    .font(.title3)
                     .padding()
             }
             .buttonStyle(BorderlessButtonStyle())
             .background(Color.red)
             .clipShape(Capsule())
-            .foregroundColor(Color.secondary)
+            .foregroundColor(Color.white)
         }
     }
 }
 
 struct RestartButton_Previews: PreviewProvider {
     static var previews: some View {
-        RestartButton()
+        RestartButton(pauseShowing: .constant(false))
     }
 }

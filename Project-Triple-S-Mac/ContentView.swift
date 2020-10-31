@@ -1,18 +1,19 @@
 //
 //  ContentView.swift
-//  Project-Triple-S
+//  Project-Triple-S-Mac
 //
-//  Created by Sam Blum on 10/27/20.
+//  Created by Sam Blum on 10/28/20.
 //
 
 import SwiftUI
 
-//Main content view with extracted subviews
 struct ContentView: View {
     var body: some View {
-        StartView()
+        SortingCenter()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

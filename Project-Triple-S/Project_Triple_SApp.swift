@@ -7,11 +7,19 @@
 
 import SwiftUI
 
+//Main app entry
 @main
 struct Project_Triple_SApp: App {
+    private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+
     var body: some Scene {
         WindowGroup {
+            if idiom == .pad {
             ContentView()
+                .navigationViewStyle(StackNavigationViewStyle())
+            } else {
+            ContentView()
+            }
         }
     }
 }

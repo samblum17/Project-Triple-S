@@ -84,7 +84,6 @@ struct SortingCenter: View {
                                 .resizable()
                                 .frame(width: 40, height: 40)
                                 .foregroundColor(.gray)
-                                .shadow(radius: 10)
                         })
                     }.padding(.bottom, 55)
                     

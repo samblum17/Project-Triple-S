@@ -10,59 +10,65 @@ import SwiftUI
 //View for a single utensil
 struct Utensil: View {
     var id = UUID()
-
+    
+    //General utensil properties
     @State var utensil: String
     static let fork = "fork-shadow"
     static let knife = "knife-shadow"
     static let spoon = "spoon-shadow"
+    
+    //Binded to the SortingCenter
     @Binding var forkScore: Int
     @Binding var knifeScore: Int
     @Binding var spoonScore: Int
     @Binding var totalScore: Int
-    
     @Binding var drawerFrames: [CGRect]
+    @Binding var drawerOrigins: [CGPoint]
+    
+    //Current utensil properties
     @State private var dragAmount = CGSize.zero
     @State private var dragState = DragState.unknown
     @State var dropped: Bool = false
     @State private var endPos = CGPoint.zero
-    
     var onChanged: ((CGPoint, String) -> DragState)?
     var onEnded: ((CGPoint, String) -> CGPoint)?
     
-    
+    //A single utensil
     var body: some View {
         Image(self.utensil)
             .resizable()
             .offset(dragAmount)
-            .if(dropped){$0.position(endPos)}
+            .if(dropped){value in withAnimation(.easeOut(duration: 2)){value.position(endPos)}}
             .scaledToFill()
             .zIndex(dragAmount == .zero ? 0 : 1)
-            .shadow(color: dragColor, radius: dragAmount == .zero ? 0 : 10)
-            .zIndex(1)
+            .shadow(color: Color.black, radius: dropped ? 5 : 0)
             .gesture (
                 DragGesture(coordinateSpace: .global)
+                    //While dragging, update offset and state of drag
                     .onChanged {
                         self.dragAmount = CGSize(width: $0.translation.width, height: $0.translation.height)
                         self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
-                        
                     }
+                    //When dropped, check if valid, send haptic feedback, increase scores, set correct drawer position
                     .onEnded { value in
                         withAnimation(.spring()) {
                             if dragState == .good {
                                 simpleSuccess()
                                 totalScore += 1
                                 endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
+                                let drawerWidth = -drawerFrames[0].width //for readability
+                                let drawerHeight = -drawerFrames[0].height //for readability
                                 switch self.utensil {
                                 case Utensil.fork:
-                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
                                     forkScore += 1
                                     dropped = true
                                 case Utensil.knife:
-                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
                                     knifeScore += 1
                                     dropped = true
                                 case Utensil.spoon:
-                                    self.dragAmount = CGSize(width: -drawerFrames[0].width, height: -drawerFrames[0].height)
+                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
                                     spoonScore += 1
                                     dropped = true
                                 default:
@@ -71,7 +77,6 @@ struct Utensil: View {
                             } else {
                                 simpleFail()
                                 self.dragAmount = .zero
-                                
                             }
                         }
                     }
@@ -80,7 +85,7 @@ struct Utensil: View {
     }
     
     
-    //Haptic feedback
+    //Haptic feedback funcs
     func simpleSuccess() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
@@ -90,7 +95,7 @@ struct Utensil: View {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
     }
-
+    
     
     //getRandomUtensil- Returns a new random utensil image each call
     static func getRandomUtensil() -> String {
@@ -99,17 +104,6 @@ struct Utensil: View {
         return utensils.randomElement() ?? Utensil.fork
     }
     
-    //For testing
-    var dragColor:Color {
-        switch dragState{
-        case .unknown:
-            return .gray
-        case .good:
-            return .green
-        case .bad:
-            return .red
-        }
-    }
 }
 
 //Enum to manage state of current utensil's drop site
@@ -133,11 +127,3 @@ extension View {
         }
     }
 }
-
-
-
-//struct Utensil_Previews: PreviewProvider {
-//    static var previews: some View {
-////        Utensil(utensil: Utensil.fork, drawerFrames: .constant()
-//    }
-//}

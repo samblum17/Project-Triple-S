@@ -12,11 +12,11 @@ struct Utensil: View, Hashable {
     static func == (lhs: Utensil, rhs: Utensil) -> Bool {
         lhs.id == rhs.id
     }
-
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-
+    
     
     var id = UUID()
     
@@ -33,7 +33,7 @@ struct Utensil: View, Hashable {
     @Binding var totalScore: Int
     @Binding var drawerFrames: [CGRect]
     @Binding var drawerOrigins: [CGPoint]
-//    @Binding var unsortedUtensils: [Utensil]
+    //    @Binding var unsortedUtensils: [Utensil]
     
     //Current utensil properties
     @State private var dragAmount = CGSize.zero
@@ -61,30 +61,30 @@ struct Utensil: View, Hashable {
                     }
                     //When dropped, check if valid, send haptic feedback, increase scores, set correct drawer position
                     .onEnded { value in
-                        withAnimation(.spring()) {
-                            if dragState == .good {
-                                simpleSuccess()
-                                totalScore += 1
-                                endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
-                                let drawerWidth = -drawerFrames[0].width //for readability
-                                let drawerHeight = -drawerFrames[0].height //for readability
-                                switch self.utensil {
-                                case Utensil.fork:
-                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
-                                    forkScore += 1
-                                    dropped = true
-                                case Utensil.knife:
-                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
-                                    knifeScore += 1
-                                    dropped = true
-                                case Utensil.spoon:
-                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
-                                    spoonScore += 1
-                                    dropped = true
-                                default:
-                                    break
-                                }
-                            } else {
+                        if dragState == .good {
+                            simpleSuccess()
+                            totalScore += 1
+                            endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
+                            let drawerWidth = -drawerFrames[0].width //for readability
+                            let drawerHeight = -drawerFrames[0].height //for readability
+                            switch self.utensil {
+                            case Utensil.fork:
+                                self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
+                                forkScore += 1
+                                dropped = true
+                            case Utensil.knife:
+                                self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
+                                knifeScore += 1
+                                dropped = true
+                            case Utensil.spoon:
+                                self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
+                                spoonScore += 1
+                                dropped = true
+                            default:
+                                break
+                            }
+                        } else {
+                            withAnimation(.spring()) {
                                 simpleFail()
                                 self.dragAmount = .zero
                             }

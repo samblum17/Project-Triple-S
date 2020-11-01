@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E4A55783254E229C008BE6D1 /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A55782254E229C008BE6D1 /* PauseMenu.swift */; };
+		E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5578A254E99C9008BE6D1 /* GameOver.swift */; };
+		E4A55799254E9BD5008BE6D1 /* PlayAgainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */; };
 		E4CA094B25491D3200C8993B /* Project_Triple_SApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */; };
 		E4CA094D25491D3200C8993B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA094C25491D3200C8993B /* ContentView.swift */; };
 		E4CA094F25491D3500C8993B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CA094E25491D3500C8993B /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		E4A55782254E229C008BE6D1 /* PauseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
+		E4A5578A254E99C9008BE6D1 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayAgainButton.swift; sourceTree = "<group>"; };
 		E4CA094725491D3200C8993B /* Project-Triple-S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Triple-S.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Triple_SApp.swift; sourceTree = "<group>"; };
 		E4CA094C25491D3200C8993B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				E4CA0A082549466700C8993B /* StartView.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
 				E4A55782254E229C008BE6D1 /* PauseMenu.swift */,
+				E4A5578A254E99C9008BE6D1 /* GameOver.swift */,
+				E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */,
 				E4FF5C4A254CB85100DA6923 /* RestartButton.swift */,
 				E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */,
 				E4CA098125492FD800C8993B /* Utensil.swift */,
@@ -484,8 +490,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4A55799254E9BD5008BE6D1 /* PlayAgainButton.swift in Sources */,
 				E4CA098225492FD800C8993B /* Utensil.swift in Sources */,
 				E4CA0A092549466800C8993B /* StartView.swift in Sources */,
+				E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */,
 				E4CA094D25491D3200C8993B /* ContentView.swift in Sources */,
 				E4FF5C4B254CB85100DA6923 /* RestartButton.swift in Sources */,
 				E4CA094B25491D3200C8993B /* Project_Triple_SApp.swift in Sources */,

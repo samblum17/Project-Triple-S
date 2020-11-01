@@ -9,7 +9,7 @@ import SwiftUI
 
 //Start screen
 struct StartView: View {
-    @State var highScore: Int = 0
+    @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
     
     var body: some View {
         //Mainly visuals on this view, all inside of a navigation view/VStack
@@ -28,7 +28,7 @@ struct StartView: View {
                 Spacer()
                 //Play button navigates to the Sorting Center- where all the magic happens.
                 NavigationLink(
-                    destination: SortingCenter(highScore: $highScore)
+                    destination: SortingCenter(highScore: highScore)
                         //Remove unecessary spaces
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)
@@ -36,7 +36,7 @@ struct StartView: View {
                     label: {
                         Image(systemName: "play.fill").resizable()
                             .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.green)
                             .shadow(radius: 10)
                             .padding()
                     })

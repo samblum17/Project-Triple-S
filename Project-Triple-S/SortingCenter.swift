@@ -14,30 +14,31 @@ struct SortingCenter: View {
     @State private var drawerOrigins = [CGPoint](repeating: .zero, count: 3)
     @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
     @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
-    @State private var unsortedUtensils: [UUID] = [UUID()] //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
+    @State private var unsortedUtensils: [UUID] = [UUID(), UUID()] //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
     
     //Variables to manage gameplay
-    @State private var timeRemaining = 17
-    @State private var gameTimer = GameTimer()
     @State private var pauseShowing = false
+    @State private var gameOverShowing = false
     @State private var forkScore: Int = 0
     @State private var knifeScore: Int = 0
     @State private var spoonScore: Int = 0
     @State private var totalScore: Int = 0
-    @Binding var highScore: Int
-    
+    @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
     //Constants
     let drawerCoordinates = "drawer-space"
     let vStackCoordinates = "vstack-space"
     let drawerCenterXOffset: CGFloat = -5
     
     var body: some View {
-            ZStack{
-                if pauseShowing {
-                    PauseMenu(pauseShowing: $pauseShowing).zIndex(2.0)
-                }
-                //All views inside this ZStack
-                VStack(alignment: .center) {
+        ZStack{
+            if pauseShowing {
+                PauseMenu(pauseShowing: $pauseShowing).zIndex(2.0)
+            }
+            if gameOverShowing {
+                GameOver(totalScore: $totalScore, highScore: highScore).zIndex(2.0)
+            }
+            //All views inside this ZStack
+            VStack(alignment: .center) {
                 
                 //Scores
                 HStack(spacing: 100) {
@@ -66,7 +67,6 @@ struct SortingCenter: View {
                         }
                     }.scaledToFit()
                     .coordinateSpace(name: drawerCoordinates)
-                    
                 }
                 
                 //Timer and pause
@@ -76,10 +76,9 @@ struct SortingCenter: View {
                             Image("plate")
                                 .resizable()
                                 .frame(width: 60, height: 60)
-                            gameTimer
+                            GameTimer(gameOverShowing: $gameOverShowing)
                         }
                         Button(action: {
-                            self.gameTimer.timer.upstream.connect().cancel()
                             pauseShowing = true
                         }, label: {
                             Image(systemName: "pause.circle.fill")
@@ -95,15 +94,16 @@ struct SortingCenter: View {
                             Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
                         }
                     }
-                    .allowsHitTesting(timeRemaining > 0)
+                    .allowsHitTesting(!gameOverShowing && !pauseShowing)
                     Spacer(minLength: 50)
                 }
                 .scaledToFit()
                 .edgesIgnoringSafeArea(.horizontal)
                 
             }.coordinateSpace(name: vStackCoordinates)
-            }
         }
+    }
+    
     
     
     //Helper function to track movement of current utensil
@@ -124,7 +124,7 @@ struct SortingCenter: View {
     //Helper function to manage dropping of utensil into drawer
     func utensilDropped(location: CGPoint, dropUtensil: String) -> CGPoint {
         if let dropZone = drawerFrames.firstIndex(where: { $0.contains(location)}) {
-
+            
             let currentDrawerMid = drawerOrigins[dropZone]
             unsortedUtensils.append(UUID())
             return currentDrawerMid
@@ -139,14 +139,13 @@ struct SortingCenter: View {
         knifeScore = 0
         spoonScore = 0
         totalScore = 0
-        timeRemaining = 17
     }
 }
-    
+
 
 //Previews
 struct SortingCenter_Previews: PreviewProvider {
     static var previews: some View {
-        SortingCenter(highScore: .constant(0))
+        SortingCenter()
     }
 }

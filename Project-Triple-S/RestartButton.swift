@@ -17,6 +17,7 @@ struct RestartButton: View {
             Button(action: {
                 self.action?()
                 pauseShowing = false
+                //restart method
             }) {
                 Text("Start Over")
                     .font(.title3)

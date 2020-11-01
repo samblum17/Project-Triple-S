@@ -11,7 +11,6 @@ import SwiftUI
 struct StartView: View {
     @State var highScore: Int = 0
     
-    
     var body: some View {
         //Mainly visuals on this view, all inside of a navigation view/VStack
         NavigationView{

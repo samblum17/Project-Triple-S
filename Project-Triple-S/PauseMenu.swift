@@ -17,6 +17,7 @@ struct PauseMenu: View {
                     RoundedRectangle(cornerRadius: 10).foregroundColor(Color.white)
                     VStack {
                         Text("Game Paused").font(.title).bold()
+                            .foregroundColor(Color.black)
                         Button(action: {
                             pauseShowing = false
                         }, label: {

@@ -8,7 +8,16 @@
 import SwiftUI
 
 //View for a single utensil
-struct Utensil: View {
+struct Utensil: View, Hashable {
+    static func == (lhs: Utensil, rhs: Utensil) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    
     var id = UUID()
     
     //General utensil properties
@@ -24,6 +33,7 @@ struct Utensil: View {
     @Binding var totalScore: Int
     @Binding var drawerFrames: [CGRect]
     @Binding var drawerOrigins: [CGPoint]
+//    @Binding var unsortedUtensils: [Utensil]
     
     //Current utensil properties
     @State private var dragAmount = CGSize.zero
@@ -38,7 +48,7 @@ struct Utensil: View {
         Image(self.utensil)
             .resizable()
             .offset(dragAmount)
-            .if(dropped){value in withAnimation(.easeOut(duration: 2)){value.position(endPos)}}
+            .if(dropped){value in value.position(endPos)}
             .scaledToFill()
             .zIndex(dragAmount == .zero ? 0 : 1)
             .shadow(color: Color.black, radius: dropped ? 5 : 0)

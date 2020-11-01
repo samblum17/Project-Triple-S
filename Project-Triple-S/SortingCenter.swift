@@ -10,20 +10,20 @@ import SwiftUI
 //Gameplay screen
 struct SortingCenter: View {
     //Variables to hold objects
-    @State var drawerFrames = [CGRect](repeating: .zero, count: 3)
-    @State var drawerOrigins = [CGPoint](repeating: .zero, count: 3)
+    @State private var drawerFrames = [CGRect](repeating: .zero, count: 3)
+    @State private var drawerOrigins = [CGPoint](repeating: .zero, count: 3)
     @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
     @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
-    @State private var unsortedUtensils: [AnyView] = []
+    @State private var unsortedUtensils: [UUID] = [UUID()] //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
     
     //Variables to manage gameplay
     @State private var timeRemaining = 17
     @State private var gameTimer = GameTimer()
     @State private var pauseShowing = false
-    @State var forkScore: Int = 0
-    @State var knifeScore: Int = 0
-    @State var spoonScore: Int = 0
-    @State var totalScore: Int = 0
+    @State private var forkScore: Int = 0
+    @State private var knifeScore: Int = 0
+    @State private var spoonScore: Int = 0
+    @State private var totalScore: Int = 0
     @Binding var highScore: Int
     
     //Constants
@@ -32,18 +32,12 @@ struct SortingCenter: View {
     let drawerCenterXOffset: CGFloat = -5
     
     var body: some View {
-        //        ForEach(0..<10) { _ in
-        //           unsortedUtensils.append(Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, onChanged: utensilMoved))
-        //        }
-        
-        return Group {
-            //ZStack used for pause menu overlay
             ZStack{
                 if pauseShowing {
                     PauseMenu(pauseShowing: $pauseShowing).zIndex(2.0)
                 }
                 //All views inside this ZStack
-            VStack(alignment: .center) {
+                VStack(alignment: .center) {
                 
                 //Scores
                 HStack(spacing: 100) {
@@ -95,21 +89,14 @@ struct SortingCenter: View {
                                 .shadow(radius: 10)
                         })
                     }.padding(.bottom, 55)
-                    
-                    
                     //Utensils to sort
-                    ZStack{
-                        ForEach(0..<7) { _ in
+                    ZStack {
+                        ForEach(0..<unsortedUtensils.count, id:\.self) { _ in
                             Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
-                                .zIndex(pauseShowing ? 0 : 1)
                         }
                     }
                     .allowsHitTesting(timeRemaining > 0)
                     Spacer(minLength: 50)
-                    
-                    
-                }.onAppear {
-                    startGame()
                 }
                 .scaledToFit()
                 .edgesIgnoringSafeArea(.horizontal)
@@ -117,7 +104,6 @@ struct SortingCenter: View {
             }.coordinateSpace(name: vStackCoordinates)
             }
         }
-    }
     
     
     //Helper function to track movement of current utensil
@@ -140,10 +126,7 @@ struct SortingCenter: View {
         if let dropZone = drawerFrames.firstIndex(where: { $0.contains(location)}) {
 
             let currentDrawerMid = drawerOrigins[dropZone]
-            
-            for _ in 0...5 {
-                unsortedUtensils.append(AnyView(Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)))
-            }
+            unsortedUtensils.append(UUID())
             return currentDrawerMid
         } else {
             return CGPoint.zero
@@ -157,13 +140,9 @@ struct SortingCenter: View {
         spoonScore = 0
         totalScore = 0
         timeRemaining = 17
-        
-        for _ in 0...10 {
-            unsortedUtensils.append(AnyView(Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins,onChanged: utensilMoved, onEnded: utensilDropped)))
-        }
     }
-    
 }
+    
 
 //Previews
 struct SortingCenter_Previews: PreviewProvider {

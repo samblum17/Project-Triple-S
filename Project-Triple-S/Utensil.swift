@@ -8,16 +8,8 @@
 import SwiftUI
 
 //View for a single utensil
-struct Utensil: View, Hashable {
-    static func == (lhs: Utensil, rhs: Utensil) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    
+struct Utensil: View {
+
     var id = UUID()
     
     //General utensil properties

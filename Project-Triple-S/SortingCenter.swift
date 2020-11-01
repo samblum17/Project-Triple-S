@@ -14,7 +14,7 @@ struct SortingCenter: View {
     @State private var drawerOrigins = [CGPoint](repeating: .zero, count: 3)
     @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
     @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
-    @State private var unsortedUtensils: [UUID] = [UUID(), UUID()] //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
+    @State private var unsortedUtensils: [UUID] = [] //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
     
     //Variables to manage gameplay
     @State private var pauseShowing = false
@@ -70,8 +70,8 @@ struct SortingCenter: View {
                 }
                 
                 //Timer and pause
-                HStack(alignment: .bottom, spacing: 0) {
-                    VStack{
+                HStack(spacing: 0) {
+                    VStack {
                         ZStack{
                             Image("plate")
                                 .resizable()
@@ -87,9 +87,12 @@ struct SortingCenter: View {
                                 .foregroundColor(.gray)
                                 .shadow(radius: 10)
                         })
-                    }.padding(.bottom, 55)
+                    }.offset()
+                    
+                    
                     //Utensils to sort
                     ZStack {
+                        Utensil(utensil: Utensil.fork, forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
                         ForEach(0..<unsortedUtensils.count, id:\.self) { _ in
                             Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
                         }

@@ -15,14 +15,14 @@ struct StartView: View {
         //Mainly visuals on this view, all inside of a navigation view/VStack
         NavigationView{
             VStack{
-                Text("Silverware Sorter").font(.largeTitle).bold()
+                Text("Silverware Sorter").font(Font.custom("Chalkboard", size: 33, relativeTo: .largeTitle)).bold()
                     .padding(.top)
                 Image("angled-group")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                Text("The dishes are ready.").font(.title2)
+                Text("The dishes are ready.").font(Font.custom("Chalkboard", size: 25, relativeTo: .body))
                     .multilineTextAlignment(.center)
-                Text("Are you?").font(.title2).italic()
+                Text("Are you?").font(Font.custom("Chalkboard", size: 25, relativeTo: .body))
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
                 Spacer()
@@ -36,7 +36,7 @@ struct StartView: View {
                     label: {
                         Image(systemName: "play.fill").resizable()
                             .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(.green)
+                            .foregroundColor(.init(UIColor.systemGray))
                             .shadow(radius: 10)
                             .padding()
                     })
@@ -44,8 +44,8 @@ struct StartView: View {
                     .navigationBarHidden(true)
                 Spacer()
                 HStack{
-                    Text("My All-Time High Score:")
-                    Text("\(highScore)")
+                    Text("My All-Time High Score:").font(Font.custom("Chalkboard", size: 20, relativeTo: .body))
+                    Text("\(highScore)").font(Font.custom("Chalkboard", size: 20, relativeTo: .body))
                 }.padding()
                 Spacer()
             }

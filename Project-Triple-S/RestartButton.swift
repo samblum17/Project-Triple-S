@@ -20,7 +20,7 @@ struct RestartButton: View {
                 //restart method
             }) {
                 Text("Start Over")
-                    .font(.title3)
+                    .font(Font.custom("Chalkboard", size: textSize(textStyle: .title3), relativeTo: .title3))
                     .padding()
             }
             .buttonStyle(BorderlessButtonStyle())
@@ -28,6 +28,10 @@ struct RestartButton: View {
             .clipShape(Capsule())
             .foregroundColor(Color.white)
         }
+    }
+    //Helper for dynamic type on custom font
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
 }
 

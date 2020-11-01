@@ -23,8 +23,12 @@ struct GameTimer: View {
                     gameOverShowing = true
                 }
             }
-            .font(.title)
+            .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
             .foregroundColor(.yellow)
+    }
+    //Helper for dynamic type on custom font
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
 }
 

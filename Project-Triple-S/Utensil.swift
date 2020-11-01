@@ -55,7 +55,7 @@ struct Utensil: View {
                     .onEnded { value in
                         if dragState == .good {
                             simpleSuccess()
-                            totalScore += 1
+//                            totalScore += 1
                             endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                             let drawerWidth = -drawerFrames[0].width //for readability
                             let drawerHeight = -drawerFrames[0].height //for readability

@@ -16,13 +16,14 @@ struct PauseMenu: View {
                 ZStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 10).foregroundColor(Color.white)
                     VStack {
-                        Text("Game Paused").font(.title).bold()
+                        Text("Game Paused")
+                            .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title)).bold()
                             .foregroundColor(Color.black)
                         Button(action: {
                             pauseShowing = false
                         }, label: {
                             Text("Resume")
-                                .font(.title3)
+                                .font(Font.custom("Chalkboard", size: textSize(textStyle: .title3), relativeTo: .title3))
                                 .padding()
                         }).buttonStyle(BorderlessButtonStyle())
                         .background(Color.green)
@@ -38,7 +39,12 @@ struct PauseMenu: View {
 
             }.background(VisualEffectView(effect: UIBlurEffect(style: .dark))
             .edgesIgnoringSafeArea(.all))
+        
 }
+    //Helper for dynamic type on custom font
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
 }
 
 struct PauseMenu_Previews: PreviewProvider {

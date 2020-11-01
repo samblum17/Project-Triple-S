@@ -10,6 +10,9 @@ import SwiftUI
 struct GameOver: View {
     @Binding var totalScore: Int
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
+    @State private var topText: String = "Game Over"
+    @State private var subText: String = "Score: "
+
     
     var body: some View {
         VStack {
@@ -17,18 +20,14 @@ struct GameOver: View {
             ZStack(alignment: .center) {
                 RoundedRectangle(cornerRadius: 10).foregroundColor(Color.white)
                 VStack {
-                    if totalScore > highScore {
-                        Text("Supreme Silverware Sorter!").font(.title).bold().foregroundColor(Color.black)
-                        Text("You sorted a whopping high score: \(totalScore) utensils!").scaledToFill().multilineTextAlignment(.center)
-                    } else {
-                        Text("Game Over").font(.title).bold().foregroundColor(Color.black)
-                        Text("Score: \(totalScore)")
-                    }
+                    Text(topText)
+                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title)).bold()
+                    Text(subText + "\(totalScore)").font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body)).scaledToFill().multilineTextAlignment(.center)
                     PlayAgainButton()
                     NavigationLink(destination: StartView()
                                    , label: {
                                     Text("Main Menu")
-                                        .font(.title3)
+                                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body))
                                         .padding()
                                         .foregroundColor(.white)
                                    }).buttonStyle(BorderlessButtonStyle())
@@ -44,17 +43,24 @@ struct GameOver: View {
         }.background(VisualEffectView(effect: UIBlurEffect(style: .dark))
                         .edgesIgnoringSafeArea(.all))
         .onAppear{
-            if totalScore > highScore {
+            if totalScore >= highScore {
                 highScore = totalScore
+                topText = "Supreme Silverware Sorter!"
+                subText = "You sorted a whopping high score: "
             }
         }
+        
+    }
+    //Helper for dynamic type on custom font
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
 }
 
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        GameOver(totalScore: .constant(1))
+        GameOver(totalScore: .constant(0))
     }
 }
 

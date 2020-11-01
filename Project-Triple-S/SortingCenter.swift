@@ -18,6 +18,8 @@ struct SortingCenter: View {
     
     //Variables to manage gameplay
     @State private var pauseShowing = false
+    @State private var gameTimer = GameTimer(gameOverShowing: .constant(false))
+    @State var timeRemaining = 17 //Keep track of changing gameTimer time to show GameOver
     @State private var gameOverShowing = false
     @State private var forkScore: Int = 0
     @State private var knifeScore: Int = 0
@@ -42,9 +44,9 @@ struct SortingCenter: View {
                 
                 //Scores
                 HStack(spacing: 100) {
-                    Text("\(forkScore)").font(.title2)
-                    Text("\(knifeScore)").font(.title2)
-                    Text("\(spoonScore)").font(.title2)
+                    Text("\(forkScore)").font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
+                    Text("\(knifeScore)").font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
+                    Text("\(spoonScore)").font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
                 }.padding()
                 
                 //Drawers
@@ -76,7 +78,13 @@ struct SortingCenter: View {
                             Image("plate")
                                 .resizable()
                                 .frame(width: 60, height: 60)
-                            GameTimer(gameOverShowing: $gameOverShowing)
+                            gameTimer.onReceive(gameTimer.timer, perform: { _ in
+                                self.timeRemaining -= 1
+                                if self.timeRemaining == 0 {
+                                    gameTimer.timer.upstream.connect().cancel()
+                                    gameOverShowing = true
+                                }
+                            })
                         }
                         Button(action: {
                             pauseShowing = true
@@ -88,11 +96,13 @@ struct SortingCenter: View {
                                 .shadow(radius: 10)
                         })
                     }.offset()
-                    
+            
                     
                     //Utensils to sort
                     ZStack {
+                        //Set fork first to maintain size of ZStack (knife image is slightly smaller and causes weird offsetting)
                         Utensil(utensil: Utensil.fork, forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
+                        //Show a new utensil each time one is dropped
                         ForEach(0..<unsortedUtensils.count, id:\.self) { _ in
                             Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
                         }
@@ -127,9 +137,12 @@ struct SortingCenter: View {
     //Helper function to manage dropping of utensil into drawer
     func utensilDropped(location: CGPoint, dropUtensil: String) -> CGPoint {
         if let dropZone = drawerFrames.firstIndex(where: { $0.contains(location)}) {
-            
             let currentDrawerMid = drawerOrigins[dropZone]
+            
+            //Add a new utensil to unsorted
             unsortedUtensils.append(UUID())
+            totalScore += 1
+            
             return currentDrawerMid
         } else {
             return CGPoint.zero
@@ -143,7 +156,13 @@ struct SortingCenter: View {
         spoonScore = 0
         totalScore = 0
     }
+    
+    //Helper for dynamic type on custom font
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
 }
+
 
 
 //Previews

@@ -17,7 +17,7 @@ struct PlayAgainButton: View {
                     //restart method
                 }) {
                     Text("Play Again")
-                        .font(.title3)
+                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body))
                         .padding()
                 }
                 .buttonStyle(BorderlessButtonStyle())
@@ -26,6 +26,11 @@ struct PlayAgainButton: View {
                 .foregroundColor(Color.white)
             }
         }
+    
+    //Dynamic type on custom font
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
     }
 
 

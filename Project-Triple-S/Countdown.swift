@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Countdown: View {
-    @State private var seconds = 3
-    @State private var countdown: [String] = ["Ready"]
     @State var readyShowing = true
     @State var setShowing = false
     @State var sortShowing = false
@@ -17,21 +15,26 @@ struct Countdown: View {
     
     var body: some View {
         NavigationView{
-            VStack {
+            VStack(alignment: .center, spacing: 20) {
+                Spacer(minLength: 10)
                 Text("Ready")
-                    .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                    .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
                    
                 if setShowing {
                     Text("Set")
-                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                        .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
+                        
+
                 }
                 if sortShowing {
                     Text("Sort!")
-                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                        .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
+                      
                 }
+                Spacer()
                 NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true)
                                 .navigationBarHidden(true), isActive: $showGame, label: { EmptyView() })
-            }
+            }.scaledToFill()
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.setShowing = true
@@ -39,7 +42,7 @@ struct Countdown: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                     self.sortShowing = true
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.8) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.9) {
                     self.showGame = true
                 }
             }

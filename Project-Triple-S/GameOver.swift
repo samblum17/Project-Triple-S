@@ -31,7 +31,18 @@ struct GameOver: View {
                         .scaledToFill()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
-                    PlayAgainButton(gameOverShowing: $gameOverShowing)
+                    NavigationLink(destination: Countdown()
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true), label: {
+                                        Text("Play Again")
+                                            .font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body))
+                                            .padding()
+                                    }
+                    )
+                    .buttonStyle(BorderlessButtonStyle())
+                    .background(Color.green)
+                    .clipShape(Capsule())
+                    .foregroundColor(Color.white)
                     NavigationLink(destination: StartView()
                                    , label: {
                                     Text("Main Menu")
@@ -66,7 +77,6 @@ struct GameOver: View {
         return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
 }
-
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {

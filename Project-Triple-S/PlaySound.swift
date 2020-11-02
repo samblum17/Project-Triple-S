@@ -5,6 +5,7 @@
 //  Created by Sam Blum on 11/1/20.
 //
 
+//Play chime on start screen
 import Foundation
 import AVFoundation
 

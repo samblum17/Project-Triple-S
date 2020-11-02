@@ -42,9 +42,9 @@ struct GameTimer: View {
        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
     //Restart timer
-    mutating func instantiateTimer() {
+    mutating func instantiateTimer(timeRemaining: Int) {
         self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-        self.timeRemaining = 17
+        self.timeRemaining = timeRemaining
         return
     }
     

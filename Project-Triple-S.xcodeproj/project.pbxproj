@@ -189,6 +189,7 @@
 			children = (
 				E4CA098625493D8D00C8993B /* Project-Triple-S.entitlements */,
 				E4CA097D2549213D00C8993B /* Views */,
+				E43BCAF8254FAED80076BEA4 /* PlaySound.swift */,
 				E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */,
 				E4CA094E25491D3500C8993B /* Assets.xcassets */,
 				E4CA095325491D3500C8993B /* Info.plist */,
@@ -229,7 +230,6 @@
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
 				E43BCB16254FC0FC0076BEA4 /* Countdown.swift */,
 				E4CA0A082549466700C8993B /* StartView.swift */,
-				E43BCAF8254FAED80076BEA4 /* PlaySound.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
 				E4A55782254E229C008BE6D1 /* PauseMenu.swift */,
 				E4A5578A254E99C9008BE6D1 /* GameOver.swift */,

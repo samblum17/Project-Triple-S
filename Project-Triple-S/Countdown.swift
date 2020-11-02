@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Countdown: View {
+    //Variables to manage state of countdown
     @State var readyShowing = true
     @State var setShowing = false
     @State var sortShowing = false
@@ -19,22 +20,21 @@ struct Countdown: View {
                 Spacer(minLength: 10)
                 Text("Ready")
                     .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
-                   
                 if setShowing {
                     Text("Set")
                         .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
-                        
-
                 }
                 if sortShowing {
                     Text("Sort!")
                         .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
-                      
                 }
                 Spacer()
-                NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true)
-                                .navigationBarHidden(true), isActive: $showGame, label: { EmptyView() })
+                //Progromatically navigate to game after showing countdown
+                NavigationLink(destination: SortingCenter()
+                                .navigationBarBackButtonHidden(true)
+                                .navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
             }.scaledToFill()
+            //Delay showing of "set" and "sort" to create a countdown effect
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.setShowing = true
@@ -49,6 +49,7 @@ struct Countdown: View {
         }.navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
+    
     //Helper for dynamic type on custom font
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
         return UIFont.preferredFont(forTextStyle: textStyle).pointSize

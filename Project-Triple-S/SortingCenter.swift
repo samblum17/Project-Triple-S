@@ -18,7 +18,7 @@ struct SortingCenter: View {
     
     //Variables to manage gameplay
     @State private var pauseShowing = false
-    @State private var gameTimer = GameTimer(gameOverShowing: .constant(false))
+    @State var gameTimer = GameTimer(gameOverShowing: .constant(false))
     @State var timeRemaining = 17 //Keep track of changing gameTimer time to show GameOver
     @State private var gameOverShowing = false
     @State private var forkScore: Int = 0
@@ -34,7 +34,7 @@ struct SortingCenter: View {
     var body: some View {
         ZStack{
             if pauseShowing {
-                PauseMenu(pauseShowing: $pauseShowing).zIndex(2.0)
+                PauseMenu(pauseShowing: $pauseShowing, timeRemaining: $timeRemaining, gameTimer: $gameTimer).zIndex(2.0)
             }
             if gameOverShowing {
                 GameOver(totalScore: $totalScore, highScore: highScore, gameOverShowing: self.$gameOverShowing).zIndex(2.0)
@@ -87,6 +87,7 @@ struct SortingCenter: View {
                             })
                         }
                         Button(action: {
+                            gameTimer.cancelTimer()
                             pauseShowing = true
                         }, label: {
                             Image(systemName: "pause.circle.fill")
@@ -96,7 +97,7 @@ struct SortingCenter: View {
                                 .shadow(radius: 10)
                         })
                     }.offset()
-            
+                    
                     
                     //Utensils to sort
                     ZStack {
@@ -150,21 +151,9 @@ struct SortingCenter: View {
         
     }
     
-    func startGame() {
-        unsortedUtensils = []
-        forkScore = 0
-        knifeScore = 0
-        spoonScore = 0
-        totalScore = 0
-        gameOverShowing = false
-        pauseShowing = false
-        self.timeRemaining = 17
-        gameTimer.instantiateTimer()
-    }
-    
     //Helper for dynamic type on custom font
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
-       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
 }
 

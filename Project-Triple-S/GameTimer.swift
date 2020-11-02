@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Combine
 
 //Timer for game
 struct GameTimer: View {
     @State var timeRemaining = 17
     @Binding var gameOverShowing: Bool
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         Text("\(timeRemaining)").bold()
@@ -24,11 +25,23 @@ struct GameTimer: View {
                 }
             }
             .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
-            .foregroundColor(.yellow)
+            .foregroundColor(timeRemaining > 10 ? .yellow : .red)
     }
+    
     //Helper for dynamic type on custom font
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    //Restart timer
+    mutating func instantiateTimer() {
+        self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        self.timeRemaining = 17
+        return
+    }
+    
+    func cancelTimer() {
+        self.timer.upstream.connect().cancel()
+        return
     }
 }
 

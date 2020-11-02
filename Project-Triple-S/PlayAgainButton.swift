@@ -9,12 +9,13 @@ import SwiftUI
 
 struct PlayAgainButton: View {
     var action: (() -> Void)?
+    @Binding var gameOverShowing: Bool
 
     var body: some View {
                 Group {
                 Button(action: {
                     self.action?()
-                    //restart method
+                    gameOverShowing = false
                 }) {
                     Text("Play Again")
                         .font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body))
@@ -36,6 +37,6 @@ struct PlayAgainButton: View {
 
 struct PlayAgainButton_Previews: PreviewProvider {
     static var previews: some View {
-        PlayAgainButton()
+        PlayAgainButton(gameOverShowing: .constant(true))
     }
 }

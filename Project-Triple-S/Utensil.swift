@@ -15,7 +15,7 @@ struct Utensil: View {
     //General utensil properties
     @State var utensil: String
     static let fork = "fork-shadow"
-    static let knife = "knife-shadow"
+    static let knife = "knife3"
     static let spoon = "spoon-shadow"
     
     //Binded to the SortingCenter
@@ -43,7 +43,7 @@ struct Utensil: View {
             .if(dropped){value in value.position(endPos)}
             .scaledToFill()
             .zIndex(dragAmount == .zero ? 0 : 1)
-            .shadow(color: Color.black, radius: dropped ? 5 : 0)
+            .shadow(color: Color.black, radius: dropped ? 2 : 0)
             .gesture (
                 DragGesture(coordinateSpace: .global)
                     //While dragging, update offset and state of drag

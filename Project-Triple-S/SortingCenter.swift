@@ -37,7 +37,7 @@ struct SortingCenter: View {
                 PauseMenu(pauseShowing: $pauseShowing).zIndex(2.0)
             }
             if gameOverShowing {
-                GameOver(totalScore: $totalScore, highScore: highScore).zIndex(2.0)
+                GameOver(totalScore: $totalScore, highScore: highScore, gameOverShowing: self.$gameOverShowing).zIndex(2.0)
             }
             //All views inside this ZStack
             VStack(alignment: .center) {
@@ -81,7 +81,7 @@ struct SortingCenter: View {
                             gameTimer.onReceive(gameTimer.timer, perform: { _ in
                                 self.timeRemaining -= 1
                                 if self.timeRemaining == 0 {
-                                    gameTimer.timer.upstream.connect().cancel()
+                                    gameTimer.cancelTimer()
                                     gameOverShowing = true
                                 }
                             })
@@ -151,10 +151,15 @@ struct SortingCenter: View {
     }
     
     func startGame() {
+        unsortedUtensils = [UUID()]
         forkScore = 0
         knifeScore = 0
         spoonScore = 0
         totalScore = 0
+        gameOverShowing = false
+        pauseShowing = false
+        self.timeRemaining = 17
+        gameTimer.instantiateTimer()
     }
     
     //Helper for dynamic type on custom font

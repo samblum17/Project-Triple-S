@@ -10,24 +10,26 @@ import SwiftUI
 //Start screen
 struct StartView: View {
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
+    var foreverAnimation: Animation {
+        Animation.interpolatingSpring(stiffness: 80, damping: 3.0)
+    }
     
     var body: some View {
         //Mainly visuals on this view, all inside of a navigation view/VStack
         NavigationView{
             VStack{
-                Text("Silverware Sorter")
-                    .font(Font.custom("Chalkboard", size: textSize(textStyle: .largeTitle), relativeTo: .largeTitle)).bold()
-                    .padding(.top)
                 Image("angled-group")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                Text("The dishes are ready.")
-                    .font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
-                    .multilineTextAlignment(.center)
-                Text("Are you?").font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom)
+                    .aspectRatio(contentMode: .fill)
+                    .animation(foreverAnimation)
                 Spacer()
+                
+                Text("The dishes are ready...")
+                    .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                    .multilineTextAlignment(.center)
+                    .padding(.top)
+                Text("Are you?").font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                    .multilineTextAlignment(.center)
                 //Play button navigates to the Sorting Center- where all the magic happens.
                 NavigationLink(
                     destination: SortingCenter(highScore: highScore)
@@ -41,13 +43,13 @@ struct StartView: View {
                             .foregroundColor(.init(UIColor.systemGray))
                             .shadow(radius: 10)
                             .padding()
-                            
+                        
                     })
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 Spacer()
                 HStack{
-                    Text("My All-Time High Score:")
+                    Text("High Score:")
                         .font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
                     Text("\(highScore)")
                         .font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
@@ -59,11 +61,14 @@ struct StartView: View {
         }.navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .onAppear{
+            playSound(sound: "start-chime", type: ".mp3")
+        }
     }
-    }
+}
 //Helper for dynamic type on custom font
 func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
-   return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    return UIFont.preferredFont(forTextStyle: textStyle).pointSize
 }
 
 struct StartView_Previews: PreviewProvider {

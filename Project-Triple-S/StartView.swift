@@ -61,6 +61,7 @@ struct StartView: View {
         }.navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear{
             playSound(sound: "start-chime", type: ".mp3")
         }

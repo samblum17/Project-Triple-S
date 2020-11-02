@@ -48,6 +48,7 @@ struct Countdown: View {
             }
         }.navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     //Helper for dynamic type on custom font

@@ -12,12 +12,14 @@ import Combine
 struct GameTimer: View {
     @State var timeRemaining = 17
     @Binding var gameOverShowing: Bool
+    @State private var isActive = true
     
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         Text("\(timeRemaining)").bold()
             .onReceive(timer) { _ in
+                guard self.isActive else { return }
                 if self.timeRemaining > 0 {
                     self.timeRemaining -= 01
                 } else {
@@ -26,6 +28,13 @@ struct GameTimer: View {
             }
             .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
             .foregroundColor(timeRemaining > 10 ? .yellow : .red)
+//            Stop timer when exiting app
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                self.isActive = false
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                self.isActive = true
+            }
     }
     
     //Helper for dynamic type on custom font

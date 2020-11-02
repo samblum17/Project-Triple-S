@@ -151,7 +151,7 @@ struct SortingCenter: View {
     }
     
     func startGame() {
-        unsortedUtensils = [UUID()]
+        unsortedUtensils = []
         forkScore = 0
         knifeScore = 0
         spoonScore = 0

@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		E43BCAE9254F51A90076BEA4 /* Chalkboard.ttc in Resources */ = {isa = PBXBuildFile; fileRef = E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */; };
 		E43BCAF9254FAED80076BEA4 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BCAF8254FAED80076BEA4 /* PlaySound.swift */; };
-		E43BCB07254FB0820076BEA4 /* start-chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E43BCB06254FB0820076BEA4 /* start-chime.mp3 */; };
+		E43BCB0F254FC0F00076BEA4 /* start-chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */; };
+		E43BCB17254FC0FC0076BEA4 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BCB16254FC0FC0076BEA4 /* Countdown.swift */; };
 		E4A55783254E229C008BE6D1 /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A55782254E229C008BE6D1 /* PauseMenu.swift */; };
 		E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5578A254E99C9008BE6D1 /* GameOver.swift */; };
 		E4A55799254E9BD5008BE6D1 /* PlayAgainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */; };
@@ -70,7 +71,8 @@
 /* Begin PBXFileReference section */
 		E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chalkboard.ttc; sourceTree = "<group>"; };
 		E43BCAF8254FAED80076BEA4 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
-		E43BCB06254FB0820076BEA4 /* start-chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "start-chime.mp3"; path = "../../../../Desktop/start-chime.mp3"; sourceTree = "<group>"; };
+		E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "start-chime.mp3"; path = "../start-chime.mp3"; sourceTree = "<group>"; };
+		E43BCB16254FC0FC0076BEA4 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		E4A55782254E229C008BE6D1 /* PauseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
 		E4A5578A254E99C9008BE6D1 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayAgainButton.swift; sourceTree = "<group>"; };
@@ -158,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */,
-				E43BCB06254FB0820076BEA4 /* start-chime.mp3 */,
+				E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */,
 				E4CA094925491D3200C8993B /* Project-Triple-S */,
 				E4CA0998254940E700C8993B /* Project-Triple-S-Mac */,
 				E4CA095B25491D3500C8993B /* Project-Triple-STests */,
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
+				E43BCB16254FC0FC0076BEA4 /* Countdown.swift */,
 				E4CA0A082549466700C8993B /* StartView.swift */,
 				E43BCAF8254FAED80076BEA4 /* PlaySound.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
@@ -450,7 +453,7 @@
 			files = (
 				E4CA095225491D3500C8993B /* Preview Assets.xcassets in Resources */,
 				E43BCAE9254F51A90076BEA4 /* Chalkboard.ttc in Resources */,
-				E43BCB07254FB0820076BEA4 /* start-chime.mp3 in Resources */,
+				E43BCB0F254FC0F00076BEA4 /* start-chime.mp3 in Resources */,
 				E4CA094F25491D3500C8993B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +506,7 @@
 			files = (
 				E4A55799254E9BD5008BE6D1 /* PlayAgainButton.swift in Sources */,
 				E4CA098225492FD800C8993B /* Utensil.swift in Sources */,
+				E43BCB17254FC0FC0076BEA4 /* Countdown.swift in Sources */,
 				E4CA0A092549466800C8993B /* StartView.swift in Sources */,
 				E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */,
 				E43BCAF9254FAED80076BEA4 /* PlaySound.swift in Sources */,

@@ -13,8 +13,6 @@ struct GameOver: View {
     @State private var topText: String = "Game Over"
     @State private var subText: String = "Score: "
     @Binding var gameOverShowing: Bool
-    @Environment(\.presentationMode) var presentationMode
-
     
     
     var body: some View {

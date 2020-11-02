@@ -15,7 +15,7 @@ struct Utensil: View {
     //General utensil properties
     @State var utensil: String
     static let fork = "fork-shadow"
-    static let knife = "knife3"
+    static let knife = "knife-shadow"
     static let spoon = "spoon-shadow"
     
     //Binded to the SortingCenter
@@ -55,7 +55,6 @@ struct Utensil: View {
                     .onEnded { value in
                         if dragState == .good {
                             simpleSuccess()
-//                            totalScore += 1
                             endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                             let drawerWidth = -drawerFrames[0].width //for readability
                             let drawerHeight = -drawerFrames[0].height //for readability

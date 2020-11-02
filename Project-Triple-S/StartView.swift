@@ -21,7 +21,7 @@ struct StartView: View {
                 Image("angled-group")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .animation(foreverAnimation)
+                    .animation(.interpolatingSpring(stiffness: 80, damping: 3.0))
                 Spacer()
                 
                 Text("The dishes are ready...")
@@ -32,7 +32,7 @@ struct StartView: View {
                     .multilineTextAlignment(.center)
                 //Play button navigates to the Sorting Center- where all the magic happens.
                 NavigationLink(
-                    destination: SortingCenter(highScore: highScore)
+                    destination: Countdown()
                         //Remove unecessary spaces
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)

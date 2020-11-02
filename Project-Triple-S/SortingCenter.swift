@@ -14,7 +14,9 @@ struct SortingCenter: View {
     @State private var drawerOrigins = [CGPoint](repeating: .zero, count: 3)
     @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
     @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
-    @State private var unsortedUtensils: [UUID] = [] //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
+    
+    //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
+    @State private var unsortedUtensils: [UUID] = []
     
     //Variables to manage gameplay
     @State private var pauseShowing = false
@@ -34,7 +36,9 @@ struct SortingCenter: View {
     var body: some View {
         ZStack{
             if pauseShowing {
-                PauseMenu(pauseShowing: $pauseShowing, timeRemaining: $timeRemaining, gameTimer: $gameTimer).zIndex(2.0)
+                PauseMenu(pauseShowing: $pauseShowing, timeRemaining: $timeRemaining, gameTimer: $gameTimer).zIndex(2.0).onAppear{
+                    playSound(sound: "sorting-track", type: ".wav", status: false)
+                }
             }
             if gameOverShowing {
                 GameOver(totalScore: $totalScore, highScore: highScore, gameOverShowing: self.$gameOverShowing).zIndex(2.0)
@@ -115,6 +119,10 @@ struct SortingCenter: View {
                 .edgesIgnoringSafeArea(.horizontal)
                 
             }.coordinateSpace(name: vStackCoordinates)
+        }.onAppear{
+//            if (!pauseShowing && !gameOverShowing) {
+                playSound(sound: "sorting-track", type: ".wav", status: true)
+//            }
         }
     }
     

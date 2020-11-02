@@ -24,7 +24,7 @@ struct StartView: View {
                     .animation(.interpolatingSpring(stiffness: 80, damping: 3.0))
                 Spacer()
                 
-                Text("The dishes are ready...")
+                Text("The silverware is ready...")
                     .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
                     .multilineTextAlignment(.center)
                     .padding(.top)
@@ -63,7 +63,7 @@ struct StartView: View {
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear{
-            playSound(sound: "start-chime", type: ".mp3")
+            playSound(sound: "start-chime", type: ".mp3", status: true)
         }
     }
 }

@@ -11,11 +11,16 @@ import AVFoundation
 
 var audioPlayer: AVAudioPlayer?
 
-func playSound(sound: String, type: String) {
+func playSound(sound: String, type: String, status: Bool) {
     if let path = Bundle.main.path(forResource: sound, ofType: type) {
         do {
+            if status {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
             audioPlayer?.play()
+            } else {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            audioPlayer?.pause()
+            }
         } catch {
             print("Error. No audio file found.")
         }

@@ -67,7 +67,7 @@ struct GameOver: View {
             if totalScore >= highScore {
                 highScore = totalScore
                 topText = "Supreme Silverware Sorter!"
-                subText = "You sorted a whopping high score: "
+                subText = "NEW HIGH SCORE: "
             }
         }
         

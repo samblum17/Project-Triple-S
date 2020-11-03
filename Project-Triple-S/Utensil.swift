@@ -8,16 +8,12 @@
 import SwiftUI
 
 //View for a single utensil
-struct Utensil: View {
+struct Utensil: View, Hashable {
+    //General utensil properties
+    var utensil: String
     var id = UUID()
     
-    //General utensil properties
-    @State var utensil: String
-    static let fork = "fork-shadow"
-    static let knife = "knife-shadow"
-    static let spoon = "spoon-shadow"
-    
-    //Binded to the SortingCenter
+    //Binded to the SortingCenter for gameplay
     @Binding var forkScore: Int
     @Binding var knifeScore: Int
     @Binding var spoonScore: Int
@@ -25,7 +21,7 @@ struct Utensil: View {
     @Binding var drawerFrames: [CGRect]
     @Binding var drawerOrigins: [CGPoint]
     
-    //Current utensil properties
+    //Current utensil's properties
     @State private var dragAmount = CGSize.zero
     @State private var dragState = DragState.unknown
     @State var dropped: Bool = false
@@ -33,49 +29,53 @@ struct Utensil: View {
     var onChanged: ((CGPoint, String) -> DragState)?
     var onEnded: ((CGPoint, String) -> CGPoint)?
     
-    //A single utensil
+    //For readability
+    static let fork = "fork-shadow"
+    static let knife = "knife-shadow"
+    static let spoon = "spoon-shadow"
+    
+    //One utensil
     var body: some View {
         Image(self.utensil)
             .resizable()
             .offset(dragAmount)
-            .if(dropped){value in withAnimation(.easeOut(duration: 2)){value.position(endPos)}}
+            .if(dropped){value in value.position(endPos)}
             .scaledToFill()
             .zIndex(dragAmount == .zero ? 0 : 1)
-            .shadow(color: Color.black, radius: dropped ? 5 : 0)
+            .shadow(color: Color.black, radius: dropped ? 2 : 0)
             .gesture (
                 DragGesture(coordinateSpace: .global)
-                    //While dragging, update offset and state of drag
+                    //While dragging, update the offset and state of drag
                     .onChanged {
                         self.dragAmount = CGSize(width: $0.translation.width, height: $0.translation.height)
                         self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
                     }
                     //When dropped, check if valid, send haptic feedback, increase scores, set correct drawer position
                     .onEnded { value in
-                        withAnimation(.spring()) {
-                            if dragState == .good {
-                                simpleSuccess()
-                                totalScore += 1
-                                endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
-                                let drawerWidth = -drawerFrames[0].width //for readability
-                                let drawerHeight = -drawerFrames[0].height //for readability
-                                switch self.utensil {
-                                case Utensil.fork:
-                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
-                                    forkScore += 1
-                                    dropped = true
-                                case Utensil.knife:
-                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
-                                    knifeScore += 1
-                                    dropped = true
-                                case Utensil.spoon:
-                                    self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
-                                    spoonScore += 1
-                                    dropped = true
-                                default:
-                                    break
-                                }
-                            } else {
-                                simpleFail()
+                        if dragState == .good {
+                            successHapticFeedback()
+                            endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
+                            let drawerWidth = -drawerFrames[0].width //for readability
+                            let drawerHeight = -drawerFrames[0].height //for readability
+                            switch self.utensil {
+                            case Utensil.fork:
+                                self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
+                                forkScore += 1
+                                dropped = true
+                            case Utensil.knife:
+                                self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
+                                knifeScore += 1
+                                dropped = true
+                            case Utensil.spoon:
+                                self.dragAmount = CGSize(width: drawerWidth, height: drawerHeight)
+                                spoonScore += 1
+                                dropped = true
+                            default:
+                                break
+                            }
+                        } else {
+                            withAnimation(.spring()) {
+                                failureHapticFeedback()
                                 self.dragAmount = .zero
                             }
                         }
@@ -85,35 +85,36 @@ struct Utensil: View {
     }
     
     
-    //Haptic feedback funcs
-    func simpleSuccess() {
+    //Helper functions for providing haptic feedback
+    func successHapticFeedback() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
     
-    func simpleFail() {
+    func failureHapticFeedback() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
     }
     
+    //Conformance to hashable for iterating over array of unsorted utensils
+    static func == (lhs: Utensil, rhs: Utensil) -> Bool {
+        return lhs.id == rhs.id
+    }
     
-    //getRandomUtensil- Returns a new random utensil image each call
-    static func getRandomUtensil() -> String {
-        let utensils: Set<String> = [Utensil.fork, Utensil.knife, Utensil.spoon]
-        //Below is always going to return a random element and never going to default to fork but, just for my own sanity, I dont want to force unwrap in such a seriously intense game. There's a lot at stake here
-        return utensils.randomElement() ?? Utensil.fork
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
 }
 
-//Enum to manage state of current utensil's drop site
+//Manage state of current utensil's drop site
 enum DragState {
     case unknown
     case good
     case bad
 }
 
-//View extension for conditional modifiers
+//Extension for conditional modifiers on the view
 extension View {
     @ViewBuilder
     func `if`<Transform: View>(

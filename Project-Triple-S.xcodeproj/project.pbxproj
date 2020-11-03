@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E43BCAE9254F51A90076BEA4 /* Chalkboard.ttc in Resources */ = {isa = PBXBuildFile; fileRef = E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */; };
+		E43BCAF9254FAED80076BEA4 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BCAF8254FAED80076BEA4 /* PlaySound.swift */; };
+		E43BCB0F254FC0F00076BEA4 /* start-chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */; };
+		E43BCB17254FC0FC0076BEA4 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BCB16254FC0FC0076BEA4 /* Countdown.swift */; };
+		E4A55783254E229C008BE6D1 /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A55782254E229C008BE6D1 /* PauseMenu.swift */; };
+		E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5578A254E99C9008BE6D1 /* GameOver.swift */; };
+		E4A55799254E9BD5008BE6D1 /* PlayAgainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */; };
+		E4B4CBCC2550A0570004DA8C /* sorting-track.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4B4CBCB2550A0570004DA8C /* sorting-track.wav */; };
 		E4CA094B25491D3200C8993B /* Project_Triple_SApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */; };
 		E4CA094D25491D3200C8993B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA094C25491D3200C8993B /* ContentView.swift */; };
 		E4CA094F25491D3500C8993B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CA094E25491D3500C8993B /* Assets.xcassets */; };
@@ -62,6 +70,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chalkboard.ttc; sourceTree = "<group>"; };
+		E43BCAF8254FAED80076BEA4 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
+		E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "start-chime.mp3"; path = "../start-chime.mp3"; sourceTree = "<group>"; };
+		E43BCB16254FC0FC0076BEA4 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		E4A55782254E229C008BE6D1 /* PauseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
+		E4A5578A254E99C9008BE6D1 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayAgainButton.swift; sourceTree = "<group>"; };
+		E4B4CBCB2550A0570004DA8C /* sorting-track.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "sorting-track.wav"; path = "../sorting-track.wav"; sourceTree = "<group>"; };
 		E4CA094725491D3200C8993B /* Project-Triple-S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Triple-S.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_Triple_SApp.swift; sourceTree = "<group>"; };
 		E4CA094C25491D3200C8993B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -145,6 +161,9 @@
 		E4CA093E25491D3100C8993B = {
 			isa = PBXGroup;
 			children = (
+				E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */,
+				E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */,
+				E4B4CBCB2550A0570004DA8C /* sorting-track.wav */,
 				E4CA094925491D3200C8993B /* Project-Triple-S */,
 				E4CA0998254940E700C8993B /* Project-Triple-S-Mac */,
 				E4CA095B25491D3500C8993B /* Project-Triple-STests */,
@@ -173,6 +192,7 @@
 			children = (
 				E4CA098625493D8D00C8993B /* Project-Triple-S.entitlements */,
 				E4CA097D2549213D00C8993B /* Views */,
+				E43BCAF8254FAED80076BEA4 /* PlaySound.swift */,
 				E4CA094A25491D3200C8993B /* Project_Triple_SApp.swift */,
 				E4CA094E25491D3500C8993B /* Assets.xcassets */,
 				E4CA095325491D3500C8993B /* Info.plist */,
@@ -212,10 +232,14 @@
 			children = (
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
 				E4CA0A082549466700C8993B /* StartView.swift */,
+				E43BCB16254FC0FC0076BEA4 /* Countdown.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
-				E4FF5C4A254CB85100DA6923 /* RestartButton.swift */,
-				E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */,
 				E4CA098125492FD800C8993B /* Utensil.swift */,
+				E4A55782254E229C008BE6D1 /* PauseMenu.swift */,
+				E4A5578A254E99C9008BE6D1 /* GameOver.swift */,
+				E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */,
+				E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */,
+				E4FF5C4A254CB85100DA6923 /* RestartButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -431,6 +455,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4CA095225491D3500C8993B /* Preview Assets.xcassets in Resources */,
+				E43BCAE9254F51A90076BEA4 /* Chalkboard.ttc in Resources */,
+				E4B4CBCC2550A0570004DA8C /* sorting-track.wav in Resources */,
+				E43BCB0F254FC0F00076BEA4 /* start-chime.mp3 in Resources */,
 				E4CA094F25491D3500C8993B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,11 +508,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4A55799254E9BD5008BE6D1 /* PlayAgainButton.swift in Sources */,
 				E4CA098225492FD800C8993B /* Utensil.swift in Sources */,
+				E43BCB17254FC0FC0076BEA4 /* Countdown.swift in Sources */,
 				E4CA0A092549466800C8993B /* StartView.swift in Sources */,
+				E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */,
+				E43BCAF9254FAED80076BEA4 /* PlaySound.swift in Sources */,
 				E4CA094D25491D3200C8993B /* ContentView.swift in Sources */,
 				E4FF5C4B254CB85100DA6923 /* RestartButton.swift in Sources */,
 				E4CA094B25491D3200C8993B /* Project_Triple_SApp.swift in Sources */,
+				E4A55783254E229C008BE6D1 /* PauseMenu.swift in Sources */,
 				E4CA09792549212E00C8993B /* SortingCenter.swift in Sources */,
 				E4E1A7F32549E8EF0092A4BC /* GameTimer.swift in Sources */,
 			);

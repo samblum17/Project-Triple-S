@@ -30,9 +30,7 @@ struct Countdown: View {
                 }
                 Spacer()
                 //Progromatically navigate to game after showing countdown
-                NavigationLink(destination: SortingCenter()
-                                .navigationBarBackButtonHidden(true)
-                                .navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
+                NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
             }.scaledToFill()
             //Delay showing of "set" and "sort" to create a countdown effect
             .onAppear {

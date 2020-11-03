@@ -8,12 +8,20 @@
 import SwiftUI
 
 //View for a single utensil
-struct Utensil: View {
-
-    var id = UUID()
+struct Utensil: View, Hashable {
+    //Conform to hashable to iterate over array of unsorted utensils
+    static func == (lhs: Utensil, rhs: Utensil) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
     
     //General utensil properties
-    @State var utensil: String
+    var utensil: String
+    var id = UUID()
+    
     static let fork = "fork-shadow"
     static let knife = "knife-shadow"
     static let spoon = "spoon-shadow"
@@ -95,14 +103,6 @@ struct Utensil: View {
     func simpleFail() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
-    }
-    
-    
-    //getRandomUtensil- Returns a new random utensil image each call
-    static func getRandomUtensil() -> String {
-        let utensils: Set<String> = [Utensil.fork, Utensil.knife, Utensil.spoon]
-        //Below is always going to return a random element and never going to default to fork but, just for my own sanity, I dont want to force unwrap in such a seriously intense game. There's a lot at stake here
-        return utensils.randomElement() ?? Utensil.fork
     }
     
 }

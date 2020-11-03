@@ -12,16 +12,18 @@ struct SortingCenter: View {
     //Variables to hold objects
     @State private var drawerFrames = [CGRect](repeating: .zero, count: 3)
     @State private var drawerOrigins = [CGPoint](repeating: .zero, count: 3)
-    @State private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
-    @State private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
+    private var drawers: [String] = ["fork-drawer", "knife-drawer", "spoon-drawer"]
+    private var possibleUtensils: [String] = [Utensil.fork, Utensil.knife, Utensil.spoon]
     
-    //Store IDs in array to represent each unsorted utensil and keep track on when to add new one
-    @State private var unsortedUtensils: [UUID] = []
+//    @State private var testShow: Bool = true
+    @State private var forkDepth: CGFloat = 2
+    @State private var knifeDepth: CGFloat = 2
+    @State private var spoonDepth: CGFloat = 2
     
     //Variables to manage gameplay
     @State private var pauseShowing = false
-    @State var gameTimer = GameTimer(gameOverShowing: .constant(false))
-    @State var timeRemaining = 17 //Keep track of changing gameTimer time to show GameOver
+    @State private var gameTimer = GameTimer(gameOverShowing: .constant(false))
+    @State private var timeRemaining = 17 //Keep track of changing gameTimer time to show GameOver
     @State private var gameOverShowing = false
     @State private var forkScore: Int = 0
     @State private var knifeScore: Int = 0
@@ -33,7 +35,10 @@ struct SortingCenter: View {
     let vStackCoordinates = "vstack-space"
     let drawerCenterXOffset: CGFloat = -5
     
+    
     var body: some View {
+        //Generate a new utensil every time view refreshes (on utensil drops)
+        let unsortedUtensils: [Utensil] = [Utensil(utensil: getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)]
         ZStack{
             if pauseShowing {
                 PauseMenu(pauseShowing: $pauseShowing, timeRemaining: $timeRemaining, gameTimer: $gameTimer).zIndex(2.0).onAppear{
@@ -53,8 +58,29 @@ struct SortingCenter: View {
                     Text("\(spoonScore)").font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
                 }.padding()
                 
-                //Drawers
+                //Drawers with dropped utensils on top
+                //Shadow grows as utensils are dropped, only shown once score>=1
                 ZStack {
+                    HStack(spacing: 0) {
+                        Image(Utensil.fork)
+                            .resizable()
+                            .scaledToFill()
+                            .position(drawerOrigins.first ?? CGPoint())
+                            .opacity(forkScore >= 1 ? 1 : 0)
+                            .shadow(color: Color.black, radius: forkDepth)
+                        Image(Utensil.knife)
+                            .resizable()
+                            .scaledToFill()
+                            .position(drawerOrigins.first ?? CGPoint())
+                            .opacity(knifeScore >= 1 ? 1 : 0)
+                            .shadow(color: Color.black, radius: knifeDepth)
+                        Image(Utensil.spoon)
+                            .resizable()
+                            .scaledToFill()
+                            .position(drawerOrigins.first ?? CGPoint())
+                            .opacity(spoonScore >= 1 ? 1 : 0)
+                            .shadow(color: Color.black, radius: spoonDepth)
+                    }.scaledToFit().zIndex(0.5)
                     HStack(spacing: 0) {
                         ForEach(0..<3) { utensil in
                             Image(drawers[utensil])
@@ -66,17 +92,19 @@ struct SortingCenter: View {
                                     Color.clear
                                         .onAppear{
                                             self.drawerFrames[utensil] = location.frame(in: .global)
-                                            self.drawerOrigins[utensil] = CGPoint(x: location.frame(in: .named(drawerCoordinates)).maxX + drawerCenterXOffset, y: location.frame(in: .named(drawerCoordinates)).midY)
+                                            self.drawerOrigins[utensil] = CGPoint(x: location.frame(in: .named(drawerCoordinates)).midX, y: location.frame(in: .named(drawerCoordinates)).midY)
                                         }
                                 }
                                 )
                         }
                     }.scaledToFit()
                     .coordinateSpace(name: drawerCoordinates)
+                    
                 }
                 
                 //Timer and pause
-                HStack(spacing: 0) {
+
+                HStack(alignment: .center, spacing: 0) {
                     VStack {
                         ZStack{
                             Image("plate")
@@ -102,14 +130,10 @@ struct SortingCenter: View {
                         })
                     }.offset()
                     
-                    
                     //Utensils to sort
                     ZStack {
-                        //Set fork first to maintain size of ZStack (knife image is slightly smaller and causes weird offsetting)
-                        Utensil(utensil: Utensil.fork, forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
-                        //Show a new utensil each time one is dropped
-                        ForEach(0..<unsortedUtensils.count, id:\.self) { _ in
-                            Utensil(utensil: Utensil.getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped)
+                        ForEach(unsortedUtensils, id:\.self) { utensil in
+                            utensil
                         }
                     }
                     .allowsHitTesting(!gameOverShowing && !pauseShowing)
@@ -119,12 +143,14 @@ struct SortingCenter: View {
                 .edgesIgnoringSafeArea(.horizontal)
                 
             }.coordinateSpace(name: vStackCoordinates)
-        }.onAppear{
-//            if (!pauseShowing && !gameOverShowing) {
-                playSound(sound: "sorting-track", type: ".wav", status: true)
-//            }
         }
-    }
+            .onAppear{
+                playSound(sound: "sorting-track", type: ".wav", status: true)
+
+                
+            }
+        }
+    
     
     
     
@@ -147,9 +173,20 @@ struct SortingCenter: View {
     func utensilDropped(location: CGPoint, dropUtensil: String) -> CGPoint {
         if let dropZone = drawerFrames.firstIndex(where: { $0.contains(location)}) {
             let currentDrawerMid = drawerOrigins[dropZone]
-            
+            switch dropUtensil {
+            case Utensil.fork:
+                forkDepth += 2
+            case Utensil.knife:
+                knifeDepth += 2
+            case Utensil.spoon:
+                spoonDepth += 2
+            default:
+                break
+            }
             //Add a new utensil to unsorted
-            unsortedUtensils.append(UUID())
+            //            unsortedUtensils.append(Utensil(utensil: getRandomUtensil(), forkScore: $forkScore, knifeScore: $knifeScore, spoonScore: $spoonScore, totalScore: $totalScore, drawerFrames: $drawerFrames, drawerOrigins: $drawerOrigins, onChanged: utensilMoved, onEnded: utensilDropped))
+            
+            
             totalScore += 1
             
             return currentDrawerMid
@@ -159,6 +196,12 @@ struct SortingCenter: View {
         
     }
     
+    //Helper function to get a new random utensil
+    func getRandomUtensil() -> String {
+        let utensils: Set<String> = [Utensil.fork, Utensil.knife, Utensil.spoon]
+        //Below is always going to return a random element and never going to default to fork but, just for my own sanity, I dont want to force unwrap in such a seriously intense game. There's a lot at stake here
+        return utensils.randomElement() ?? Utensil.fork
+    }
     //Helper for dynamic type on custom font
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
         return UIFont.preferredFont(forTextStyle: textStyle).pointSize

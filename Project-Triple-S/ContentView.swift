@@ -16,6 +16,11 @@ struct ContentView: View {
     var body: some View {
         StartView()
     }
+    
+    //Helper funtion for dynamic type on custom font
+    static func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

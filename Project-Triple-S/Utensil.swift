@@ -9,33 +9,19 @@ import SwiftUI
 
 //View for a single utensil
 struct Utensil: View, Hashable {
-    //Conform to hashable to iterate over array of unsorted utensils
-    static func == (lhs: Utensil, rhs: Utensil) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
     //General utensil properties
     var utensil: String
     var id = UUID()
     
-    static let fork = "fork-shadow"
-    static let knife = "knife-shadow"
-    static let spoon = "spoon-shadow"
-    
-    //Binded to the SortingCenter
+    //Binded to the SortingCenter for gameplay
     @Binding var forkScore: Int
     @Binding var knifeScore: Int
     @Binding var spoonScore: Int
     @Binding var totalScore: Int
     @Binding var drawerFrames: [CGRect]
     @Binding var drawerOrigins: [CGPoint]
-    //    @Binding var unsortedUtensils: [Utensil]
     
-    //Current utensil properties
+    //Current utensil's properties
     @State private var dragAmount = CGSize.zero
     @State private var dragState = DragState.unknown
     @State var dropped: Bool = false
@@ -43,7 +29,12 @@ struct Utensil: View, Hashable {
     var onChanged: ((CGPoint, String) -> DragState)?
     var onEnded: ((CGPoint, String) -> CGPoint)?
     
-    //A single utensil
+    //For readability
+    static let fork = "fork-shadow"
+    static let knife = "knife-shadow"
+    static let spoon = "spoon-shadow"
+    
+    //One utensil
     var body: some View {
         Image(self.utensil)
             .resizable()
@@ -54,7 +45,7 @@ struct Utensil: View, Hashable {
             .shadow(color: Color.black, radius: dropped ? 2 : 0)
             .gesture (
                 DragGesture(coordinateSpace: .global)
-                    //While dragging, update offset and state of drag
+                    //While dragging, update the offset and state of drag
                     .onChanged {
                         self.dragAmount = CGSize(width: $0.translation.width, height: $0.translation.height)
                         self.dragState = self.onChanged?($0.location, self.utensil) ?? .unknown
@@ -62,7 +53,7 @@ struct Utensil: View, Hashable {
                     //When dropped, check if valid, send haptic feedback, increase scores, set correct drawer position
                     .onEnded { value in
                         if dragState == .good {
-                            simpleSuccess()
+                            successHapticFeedback()
                             endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                             let drawerWidth = -drawerFrames[0].width //for readability
                             let drawerHeight = -drawerFrames[0].height //for readability
@@ -84,7 +75,7 @@ struct Utensil: View, Hashable {
                             }
                         } else {
                             withAnimation(.spring()) {
-                                simpleFail()
+                                failureHapticFeedback()
                                 self.dragAmount = .zero
                             }
                         }
@@ -94,27 +85,36 @@ struct Utensil: View, Hashable {
     }
     
     
-    //Haptic feedback funcs
-    func simpleSuccess() {
+    //Helper functions for providing haptic feedback
+    func successHapticFeedback() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
     
-    func simpleFail() {
+    func failureHapticFeedback() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
     }
     
+    //Conformance to hashable for iterating over array of unsorted utensils
+    static func == (lhs: Utensil, rhs: Utensil) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
 }
 
-//Enum to manage state of current utensil's drop site
+//Manage state of current utensil's drop site
 enum DragState {
     case unknown
     case good
     case bad
 }
 
-//View extension for conditional modifiers
+//Extension for conditional modifiers on the view
 extension View {
     @ViewBuilder
     func `if`<Transform: View>(

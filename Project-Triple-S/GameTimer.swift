@@ -8,12 +8,11 @@
 import SwiftUI
 import Combine
 
-//Timer for game
+//Timer to manage gameplay
 struct GameTimer: View {
     @State var timeRemaining = 17
     @Binding var gameOverShowing: Bool
     @State private var isActive = true
-    
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -26,9 +25,9 @@ struct GameTimer: View {
                     gameOverShowing = true
                 }
             }
-            .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .title))
             .foregroundColor(timeRemaining > 10 ? .yellow : .red)
-//            Stop timer when exiting app
+            //Pause timer when exiting app
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                 self.isActive = false
             }
@@ -37,17 +36,14 @@ struct GameTimer: View {
             }
     }
     
-    //Helper for dynamic type on custom font
-    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
-       return UIFont.preferredFont(forTextStyle: textStyle).pointSize
-    }
-    //Restart timer
+    //Helper function to restart timer
     mutating func instantiateTimer(timeRemaining: Int) {
         self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         self.timeRemaining = timeRemaining
         return
     }
     
+    //Helper function to cancel timer
     func cancelTimer() {
         self.timer.upstream.connect().cancel()
         return

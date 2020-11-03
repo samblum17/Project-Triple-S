@@ -231,15 +231,15 @@
 			isa = PBXGroup;
 			children = (
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
-				E43BCB16254FC0FC0076BEA4 /* Countdown.swift */,
 				E4CA0A082549466700C8993B /* StartView.swift */,
+				E43BCB16254FC0FC0076BEA4 /* Countdown.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
+				E4CA098125492FD800C8993B /* Utensil.swift */,
 				E4A55782254E229C008BE6D1 /* PauseMenu.swift */,
 				E4A5578A254E99C9008BE6D1 /* GameOver.swift */,
+				E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */,
 				E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */,
 				E4FF5C4A254CB85100DA6923 /* RestartButton.swift */,
-				E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */,
-				E4CA098125492FD800C8993B /* Utensil.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

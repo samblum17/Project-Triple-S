@@ -25,15 +25,16 @@ struct StartView: View {
                 Spacer()
                 
                 Text("The silverware is ready...")
-                    .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                    .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .title))
                     .multilineTextAlignment(.center)
                     .padding(.top)
-                Text("Are you?").font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                Text("Are you?").font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .title))
                     .multilineTextAlignment(.center)
-                //Play button navigates to the Sorting Center- where all the magic happens.
+                
+                //Play button navigates to brief countdown and then progromatically to the Sorting Center- where all the magic happens.
                 NavigationLink(
                     destination: Countdown()
-                        //Remove unecessary spaces
+                        //Remove unecessary whitespace
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)
                     ,
@@ -50,14 +51,14 @@ struct StartView: View {
                 Spacer()
                 HStack{
                     Text("High Score:")
-                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
+                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
                     Text("\(highScore)")
-                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .title2), relativeTo: .title2))
+                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
                     
                 }.padding()
                 Spacer()
             }
-            //Remove unecessary spaces
+            //Remove unecessary whitespace
         }.navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
@@ -66,10 +67,6 @@ struct StartView: View {
             playSound(sound: "start-chime", type: ".mp3", status: true)
         }
     }
-}
-//Helper for dynamic type on custom font
-func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
-    return UIFont.preferredFont(forTextStyle: textStyle).pointSize
 }
 
 struct StartView_Previews: PreviewProvider {

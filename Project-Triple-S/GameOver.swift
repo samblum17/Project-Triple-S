@@ -7,13 +7,13 @@
 
 import SwiftUI
 
+//Menu to show when game ends
 struct GameOver: View {
     @Binding var totalScore: Int
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
     @State private var topText: String = "Game Over"
     @State private var subText: String = "Score: "
     @Binding var gameOverShowing: Bool
-    
     
     var body: some View {
         VStack {
@@ -23,19 +23,21 @@ struct GameOver: View {
                     .foregroundColor(Color.white)
                 VStack {
                     Text(topText)
-                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .title1), relativeTo: .title))
+                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .title))
                         .bold()
                         .foregroundColor(.black)
                     Text(subText + "\(totalScore)")
-                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body))
+                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .scaledToFill()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
+                    
+                    //Play again button navigates back to countdown view
                     NavigationLink(destination: Countdown()
                                     .navigationBarBackButtonHidden(true)
                                     .navigationBarHidden(true), label: {
                                         Text("Play Again")
-                                            .font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body))
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                                             .padding()
                                     }
                     )
@@ -43,10 +45,12 @@ struct GameOver: View {
                     .background(Color.green)
                     .clipShape(Capsule())
                     .foregroundColor(Color.white)
+                    
+                    //Main menu button navigates back to start view
                     NavigationLink(destination: StartView()
                                    , label: {
                                     Text("Main Menu")
-                                        .font(Font.custom("Chalkboard", size: textSize(textStyle: .body), relativeTo: .body))
+                                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                                         .padding()
                                         .foregroundColor(.white)
                                    })
@@ -64,17 +68,13 @@ struct GameOver: View {
         .background(VisualEffectView(effect: UIBlurEffect(style: .dark))
         .edgesIgnoringSafeArea(.all))
         .onAppear{
+            //When game ends, check if player beat high score, update saved high score in AppStorage, and display SSS message
             if totalScore >= highScore {
                 highScore = totalScore
                 topText = "Supreme Silverware Sorter!"
                 subText = "NEW HIGH SCORE: "
             }
         }
-        
-    }
-    //Helper for dynamic type on custom font
-    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
-        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
 }
 

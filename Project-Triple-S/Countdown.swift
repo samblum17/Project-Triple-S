@@ -29,18 +29,20 @@ struct Countdown: View {
                         .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
                 }
                 Spacer()
+                
                 //Progromatically navigate to game after showing countdown
                 NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
             }.scaledToFill()
+            
             //Delay showing of "set" and "sort" to create a countdown effect
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
                     self.setShowing = true
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
                     self.sortShowing = true
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.9) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.3) {
                     self.showGame = true
                 }
             }
@@ -49,10 +51,6 @@ struct Countdown: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    //Helper for dynamic type on custom font
-    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
-        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
-    }
 }
 
 

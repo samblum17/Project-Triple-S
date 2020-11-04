@@ -1,8 +1,6 @@
 <img src="https://github.com/samblum17/Project-Triple-S/blob/main/Project-Triple-S/Assets.xcassets/Silverware%20Sorter%20Marketing%20Banner.png?raw=true">
 
-###### There is nothing more satisfying than a neat, sorted set of silverware. Practice your coordination skills and start sorting today. 
-###### The silverware is ready. Are you?
-
+###### There is nothing more satisfying than a neat, sorted set of silverware. Practice your coordination skills and start sorting today.
 [Download now on the App Store](https://apps.apple.com/us/app/silverware-sorter/id1538396767)
 
 ## Game Highlights:

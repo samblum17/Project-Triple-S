@@ -18,10 +18,10 @@ Silverware Sorter is a fast-paced sorting game that will put your hand-eye coord
 This is silverware like you've never seen it before. Do you have what it takes to be the next Supreme Silverware Sorter?
 
 ## Prerequisites
-Silverware Sorter is designed for iPhone and iPad and coming soon to the Mac. Version 1.0 equires an iOS device running iOS 14+.
+Silverware Sorter is designed for iPhone and iPad and coming soon to the Mac. Version 1.0 requires an iOS device running iOS 14+.
 
 ## Development Process
-Codenamed "Project Triple S", Silverware Sorter was conceived, designed, and developed over the week of October 28 - November 3 2020. I built the application with the goal of sharpening SwiftUI skills and learning the foundations of iOS game development compared to general app development. The application was written entirely in Swift with SwiftUI and Xcode 12.0. Using a Notion workspace, I managed a kanban board for the project from start to finish over the 6 day period following strict deadlines and priorities to practice Agile project management. Project Triple S utilized Git and GitHub for source control, and the app was fully tested and reviewed before completion.
+Codenamed "Project Triple S", Silverware Sorter was designed and developed from scratch to completion over the week of October 28 - November 3 2020. I built the application with the goal of sharpening SwiftUI skills and learning the foundations of iOS game development compared to general app development. The application was written entirely in Swift with SwiftUI and Xcode 12.0. Using a Notion workspace, I managed a kanban board for the project from start to finish over the 6 day period following strict deadlines and priorities to practice Agile project management. Project Triple S utilized Git and GitHub for source control, and the app was fully tested and reviewed before completion.
 Many challenges arose during development such as silverware struggling to fit into the proper parent view and constant @State changes causing heavy lag. As a relatively new framework, it became difficult to debug SwiftUI build and runtime errors. After constant trial and error and with the help of Hacking with Swift and online developer forums, tweaks to the storage of @State variables and view hierarchy produced a fluid user interface that looks gorgeous across device types and screen sizes.
 
 ## Authors

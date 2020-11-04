@@ -1,9 +1,9 @@
-//Project is preparing for release. Check back soon for a finalized README.
-
-<img src="https://">
+<img src="https://github.com/samblum17/Project-Triple-S/blob/main/Project-Triple-S/Assets.xcassets/Silverware%20Sorter%20Marketing%20Banner.png?raw=true">
 
 ###### There is nothing more satisfying than a neat, sorted set of silverware. Practice your coordination skills and start sorting today. 
 ###### The silverware is ready. Are you?
+
+[Download now on the App Store](https://apps.apple.com/us/app/silverware-sorter/id1538396767)
 
 ## Game Highlights:
 Silverware Sorter is a fast-paced sorting game that will put your hand-eye coordination to the test. You have 17 seconds to sort as many pieces of unsorted silverware as possible.
@@ -36,4 +36,4 @@ Grit, humility, and a constant drive to never be satisfied push me to seek new o
 Questions about any of the code or project as a whole? I'd love to chat! Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/samblum17/) or email samblum17@icloud.com.
 
 
-//Last updated for Version 1.0 on November 3, 2020.
+//Last updated for Version 1.0.1 on November 4, 2020.

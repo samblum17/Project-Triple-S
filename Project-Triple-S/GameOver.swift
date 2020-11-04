@@ -26,6 +26,8 @@ struct GameOver: View {
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .title))
                         .bold()
                         .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+
                     Text(subText + "\(totalScore)")
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .scaledToFill()
@@ -71,8 +73,8 @@ struct GameOver: View {
             //When game ends, check if player beat high score, update saved high score in AppStorage, and display SSS message
             if totalScore >= highScore {
                 highScore = totalScore
-                topText = "Supreme Silverware Sorter!"
-                subText = "NEW HIGH SCORE: "
+                topText = "Supreme\nSilverware\nSorter!"
+                subText = "HIGH SCORE: "
             }
         }
     }

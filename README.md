@@ -2,7 +2,8 @@
 
 <img src="https://">
 
-###### There is nothing more satisfying than a neat, sorted set of silverware. Practice your coordination skills and start sorting today. The silverware is ready. Are you?
+###### There is nothing more satisfying than a neat, sorted set of silverware. Practice your coordination skills and start sorting today. 
+###### The silverware is ready. Are you?
 
 ## Game Highlights:
 Silverware Sorter is a fast-paced sorting game that will put your hand-eye coordination to the test. You have 17 seconds to sort as many pieces of unsorted silverware as possible.

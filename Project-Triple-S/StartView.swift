@@ -10,6 +10,9 @@ import SwiftUI
 //Start screen
 struct StartView: View {
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
+    @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
+    
     var foreverAnimation: Animation {
         Animation.interpolatingSpring(stiffness: 80, damping: 3.0)
     }
@@ -32,6 +35,7 @@ struct StartView: View {
                     .multilineTextAlignment(.center)
                 
                 //Play button navigates to brief countdown and then progromatically to the Sorting Center- where all the magic happens.
+                HStack{
                 NavigationLink(
                     destination: Countdown()
                         //Remove unecessary whitespace
@@ -44,18 +48,26 @@ struct StartView: View {
                             .foregroundColor(.init(UIColor.systemGray))
                             .shadow(radius: 10)
                             .padding()
-                        
+
                     })
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
+                }
                 Spacer()
                 HStack{
                     Text("High Score:")
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
-                    Text("\(highScore)")
+                    Text("\(survivorMode ? survivorHighScore : highScore)")
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
                     
                 }.padding()
+                HStack {
+                    Text("Survivor Mode")
+                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+                    Toggle("", isOn: $survivorMode)
+                    .labelsHidden()
+                    .toggleStyle(SwitchToggleStyle(tint: .gray))
+                }
                 Spacer()
             }
             //Remove unecessary whitespace

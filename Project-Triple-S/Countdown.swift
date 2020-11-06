@@ -13,6 +13,8 @@ struct Countdown: View {
     @State var setShowing = false
     @State var sortShowing = false
     @State var showGame = false
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
+
     
     var body: some View {
         NavigationView{
@@ -31,7 +33,11 @@ struct Countdown: View {
                 Spacer()
                 
                 //Progromatically navigate to game after showing countdown
+                if survivorMode {
+                    NavigationLink(destination: SurvivorSortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
+                } else {
                 NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
+                }
             }.scaledToFill()
             
             //Delay showing of "set" and "sort" to create a countdown effect

@@ -34,6 +34,12 @@ struct Utensil: View, Hashable {
     static let knife = "knife-shadow"
     static let spoon = "spoon-shadow"
     
+    //Needed for survivor mode
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
+    @Binding var gameTimer: GameTimer
+    @Binding var timeRemaining: Int
+    @Binding var gameOverShowing: Bool
+    
     //One utensil
     var body: some View {
         Image(self.utensil)
@@ -54,6 +60,11 @@ struct Utensil: View, Hashable {
                     .onEnded { value in
                         if dragState == .good {
                             successHapticFeedback()
+                            if survivorMode {
+                                gameTimer.cancelTimer()
+                                gameTimer.instantiateTimer(timeRemaining: 1)
+                                timeRemaining = 1
+                            }
                             endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                             let drawerWidth = -drawerFrames[0].width //for readability
                             let drawerHeight = -drawerFrames[0].height //for readability
@@ -74,9 +85,15 @@ struct Utensil: View, Hashable {
                                 break
                             }
                         } else {
+                            if survivorMode {
+                                failureHapticFeedback()
+                                gameOverShowing = true
+                                gameTimer.cancelTimer()
+                            } else {
                             withAnimation(.spring()) {
                                 failureHapticFeedback()
                                 self.dragAmount = .zero
+                            }
                             }
                         }
                     }

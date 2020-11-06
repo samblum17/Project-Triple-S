@@ -11,6 +11,8 @@ import SwiftUI
 struct GameOver: View {
     @Binding var totalScore: Int
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
+    @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
     @State private var topText: String = "Game Over"
     @State private var subText: String = "Score: "
     @Binding var gameOverShowing: Bool
@@ -71,10 +73,18 @@ struct GameOver: View {
         .edgesIgnoringSafeArea(.all))
         .onAppear{
             //When game ends, check if player beat high score, update saved high score in AppStorage, and display SSS message
-            if totalScore >= highScore {
-                highScore = totalScore
-                topText = "Supreme\nSilverware\nSorter!"
-                subText = "HIGH SCORE: "
+            if survivorMode {
+                if totalScore >= survivorHighScore {
+                    survivorHighScore = totalScore
+                    topText = "Supreme\nSilverware\nSorter!"
+                    subText = "HIGH SCORE: "
+                }
+            } else {
+                if totalScore >= highScore {
+                    highScore = totalScore
+                    topText = "Supreme\nSilverware\nSorter!"
+                    subText = "HIGH SCORE: "
+                }
             }
         }
     }

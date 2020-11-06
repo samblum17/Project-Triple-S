@@ -1,5 +1,5 @@
 //
-//  GameTimer.swift
+//  SurvivorTimer.swift
 //  Project-Triple-S
 //
 //  Created by Sam Blum on 10/28/20.
@@ -9,25 +9,25 @@ import SwiftUI
 import Combine
 
 //Timer to manage gameplay
-struct GameTimer: View {
+struct SurvivorTimer: View {
     @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
-    @State var timeRemaining = 17
+    @State var timeRemaining = 1.0
     @Binding var gameOverShowing: Bool
     @State private var isActive = true
-    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         Text("\(timeRemaining)").bold()
             .onReceive(timer) { _ in
                 guard self.isActive else { return }
-                if self.timeRemaining > 0 {
-                    self.timeRemaining -= 01
+                if self.timeRemaining > 0.0 {
+                    self.timeRemaining -= 0.1
                 } else {
                     gameOverShowing = true
                 }
             }
             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .title))
-            .foregroundColor(timeRemaining > 10 ? .yellow : .red)
+            .foregroundColor(.red)
             //Pause timer when exiting app
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                 self.isActive = false
@@ -37,14 +37,14 @@ struct GameTimer: View {
             }
             .onAppear {
                 if survivorMode {
-                    timeRemaining = 1
+                    timeRemaining = 1.0
                 }
             }
     }
     
     //Helper function to restart timer
-    mutating func instantiateTimer(timeRemaining: Int) {
-        self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    mutating func instantiateTimer(timeRemaining: Double) {
+        self.timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
         self.timeRemaining = timeRemaining
         return
     }
@@ -56,8 +56,8 @@ struct GameTimer: View {
     }
 }
 
-struct GameTimer_Previews: PreviewProvider {
+struct SurvivorTimer_Previews: PreviewProvider {
     static var previews: some View {
-        GameTimer(gameOverShowing: .constant(false))
+        SurvivorTimer(gameOverShowing: .constant(false))
     }
 }

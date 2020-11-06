@@ -12,6 +12,7 @@ struct PauseMenu: View {
     @Binding var pauseShowing: Bool
     @Binding var timeRemaining: Int
     @Binding var gameTimer: GameTimer
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
     
     var body: some View {
         VStack {

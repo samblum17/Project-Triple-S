@@ -12,6 +12,8 @@ struct ContentView: View {
     //Store high score in UserDefaults and access across app
     static let appGroup = "group.project-triple-s.shared-highScore"
     @AppStorage("highScore", store: UserDefaults(suiteName: appGroup)) var highScore: Int = 0
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
+    @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
     
     var body: some View {
         StartView()

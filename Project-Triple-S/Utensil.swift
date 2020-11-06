@@ -63,7 +63,7 @@ struct Utensil: View, Hashable {
                             if survivorMode {
                                 gameTimer.cancelTimer()
                                 gameTimer.instantiateTimer(timeRemaining: 1)
-                                timeRemaining = 1
+                                timeRemaining = 2
                             }
                             endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                             let drawerWidth = -drawerFrames[0].width //for readability

@@ -13,6 +13,7 @@ struct StartView: View {
     @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
     @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
     @State private var survivorModeToggle: Bool = false
+    @State var showingHelp = false
     
     var foreverAnimation: Animation {
         Animation.interpolatingSpring(stiffness: 80, damping: 3.0)
@@ -26,6 +27,7 @@ struct StartView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .animation(.interpolatingSpring(stiffness: 80, damping: 3.0))
+                    .zIndex(1.0)
                 Spacer()
                 
                 Text("The silverware is ready...")
@@ -37,41 +39,96 @@ struct StartView: View {
                 
                 //Play button navigates to brief countdown and then progromatically to the Sorting Center- where all the magic happens.
                 HStack{
-                    NavigationLink(
-                        destination: Countdown(survivorModeToggle: $survivorModeToggle)
-                            //Remove unecessary whitespace
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarHidden(true)
-                        ,
-                        label: {
-                            Image(systemName: "play.fill").resizable()
-                                .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                .foregroundColor(survivorModeToggle ? .red : .init(UIColor.systemGray))
-                                .shadow(radius: 10)
-                                .padding()
-                            
-                        })
-                        .navigationBarBackButtonHidden(true)
-                        .navigationBarHidden(true)
-                }
-                Spacer()
-                HStack{
-                    Text("High Score:")
-                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
-                    Text("\(survivorMode ? survivorHighScore : highScore)")
-                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
-                    
-                }.padding()
-                HStack {
-                    Text("Survivor Mode")
-                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
-                    Toggle("", isOn: $survivorModeToggle).onChange(of: survivorModeToggle, perform: { value in
-                        survivorMode = survivorModeToggle
+//                    NavigationLink(
+//                        destination: Countdown(survivorModeToggle: $survivorModeToggle)
+//                            //Remove unecessary whitespace
+//                            .navigationBarBackButtonHidden(true)
+//                            .navigationBarHidden(true)
+//                        ,
+//                        label: {
+//                            Image(systemName: "play.fill").resizable()
+//                                .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                                .foregroundColor(.init(UIColor.systemGray))
+//                                .shadow(radius: 10)
+//                                .padding()
+//
+//                        })
+//                        .navigationBarBackButtonHidden(true)
+//                        .navigationBarHidden(true)
+                    NavigationLink(destination: Countdown(survivorModeToggle: $survivorMode)
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true), label: {
+                                        Text("Classic Mode")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .padding()
+                                    }
+                    ).simultaneousGesture(TapGesture().onEnded{
+                        survivorMode = false
                     })
-                    .labelsHidden()
-                    .toggleStyle(SwitchToggleStyle(tint: .red))
+                    .buttonStyle(BorderlessButtonStyle())
+                    .background(Color.gray)
+                    .clipShape(Capsule())
+                    .foregroundColor(Color.white)
+                    
+                    .padding()
+                    NavigationLink(destination: Countdown(survivorModeToggle: $survivorMode)
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true), label: {
+                                        Text("Survivor Mode")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .padding()
+                                    }
+                    ).simultaneousGesture(TapGesture().onEnded{
+                        survivorMode = true
+                    })
+                    .buttonStyle(BorderlessButtonStyle())
+                    .background(Color.gray)
+                    .clipShape(Capsule())
+                    .foregroundColor(Color.white)
+                    .padding()
                 }
                 Spacer()
+                Spacer()
+                Spacer()
+
+//                HStack{
+//                    Text("High Score:")
+//                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
+//                    Text("\(survivorMode ? survivorHighScore : highScore)")
+//                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
+//
+//                }.padding()
+                VStack(alignment: .center){
+//                HStack {
+//                    Text("Classic Mode")
+//                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+//                    Toggle("", isOn: $survivorModeToggle).onChange(of: survivorModeToggle, perform: { value in
+//                        survivorMode = survivorModeToggle
+//                    })
+//                    .labelsHidden()
+//                    .toggleStyle(SwitchToggleStyle(tint: .gray))
+//                    Text("Surviror Mode")
+//                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+//                }
+//                    Button(action: {
+//                               self.showingHelp.toggle()
+//                           }) {
+//                        Image(systemName: "info.circle").resizable()
+//                            .frame(width: 30, height: 30, alignment: .leading)
+//                            .foregroundColor(.init(UIColor.systemGray))
+//                           }.sheet(isPresented: $showingHelp) {
+//                               Help()
+//                           }
+                    NavigationLink(destination: Help(), label: {
+                        Image(systemName: "questionmark.circle").resizable()
+                            .frame(width: 30, height: 30, alignment: .leading)
+                            .foregroundColor(.init(UIColor.systemGray))
+                    })
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true)
+                }
+                    Spacer()
+
             }
             //Remove unecessary whitespace
         }.navigationBarTitle("")

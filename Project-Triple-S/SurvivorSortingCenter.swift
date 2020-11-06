@@ -19,7 +19,7 @@ struct SurvivorSortingCenter: View {
     @State private var pauseShowing = false
     @State private var gameOverShowing = false
     @State private var gameTimer = GameTimer(gameOverShowing: .constant(false))
-    @State private var timeRemaining = 1 //Keep track of changing survivorTimer time for when to show GameOver
+    @State private var timeRemaining = 2 //Keep track of changing survivorTimer time for when to show GameOver
     @State private var forkScore: Int = 0
     @State private var knifeScore: Int = 0
     @State private var spoonScore: Int = 0

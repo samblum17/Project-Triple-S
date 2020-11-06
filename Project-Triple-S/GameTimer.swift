@@ -37,7 +37,7 @@ struct GameTimer: View {
             }
             .onAppear {
                 if survivorMode {
-                    timeRemaining = 1
+                    timeRemaining = 2
                 }
             }
     }

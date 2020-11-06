@@ -15,6 +15,7 @@ struct GameOver: View {
     @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
     @State private var topText: String = "Game Over"
     @State private var subText: String = "Score: "
+    @State private var subText2: String = "High Score: "
     @Binding var gameOverShowing: Bool
     
     var body: some View {
@@ -30,12 +31,17 @@ struct GameOver: View {
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                     
-                    Text(subText + "\(totalScore)")
+                    Text((subText + "\(totalScore)"))
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .scaledToFill()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
-                    
+                    Text((subText2 + "\(survivorMode ? survivorHighScore : highScore)"))
+                        .isHidden(survivorMode ? totalScore >= survivorHighScore : totalScore >= highScore)
+                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                        .scaledToFill()
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
                     //Play again button navigates back to countdown view
                     NavigationLink(destination: Countdown(survivorModeToggle: $survivorMode)
                                     .navigationBarBackButtonHidden(true)
@@ -63,6 +69,7 @@ struct GameOver: View {
                         .clipShape(Capsule())
                         .foregroundColor(Color.white)
                         .scaledToFit()
+                        .padding(.bottom)
                 }.scaledToFill()
             }.frame(minHeight: 150, idealHeight: 182, maxHeight: 200)
             .padding()
@@ -96,3 +103,15 @@ struct SwiftUIView_Previews: PreviewProvider {
     }
 }
 
+//Extension to hide text
+extension View {
+@ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
+      if hidden {
+          if !remove {
+              self.hidden()
+          }
+      } else {
+          self
+      }
+  }
+}

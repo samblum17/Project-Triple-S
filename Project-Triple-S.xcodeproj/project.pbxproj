@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E40AE0892555C7BF00F1CB8F /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40AE0882555C7BF00F1CB8F /* Help.swift */; };
 		E43BCAE9254F51A90076BEA4 /* Chalkboard.ttc in Resources */ = {isa = PBXBuildFile; fileRef = E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */; };
 		E43BCAF9254FAED80076BEA4 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BCAF8254FAED80076BEA4 /* PlaySound.swift */; };
 		E43BCB0F254FC0F00076BEA4 /* start-chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E40AE0882555C7BF00F1CB8F /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		E43BCAE8254F51A90076BEA4 /* Chalkboard.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chalkboard.ttc; sourceTree = "<group>"; };
 		E43BCAF8254FAED80076BEA4 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "start-chime.mp3"; path = "../start-chime.mp3"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
 				E4CA0A082549466700C8993B /* StartView.swift */,
+				E40AE0882555C7BF00F1CB8F /* Help.swift */,
 				E43BCB16254FC0FC0076BEA4 /* Countdown.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
 				E4C2635725552777006E3EEB /* SurvivorSortingCenter.swift */,
@@ -519,6 +522,7 @@
 				E4C2635825552777006E3EEB /* SurvivorSortingCenter.swift in Sources */,
 				E43BCB17254FC0FC0076BEA4 /* Countdown.swift in Sources */,
 				E4CA0A092549466800C8993B /* StartView.swift in Sources */,
+				E40AE0892555C7BF00F1CB8F /* Help.swift in Sources */,
 				E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */,
 				E43BCAF9254FAED80076BEA4 /* PlaySound.swift in Sources */,
 				E4CA094D25491D3200C8993B /* ContentView.swift in Sources */,

@@ -41,7 +41,7 @@ struct PauseMenu: View {
                     .scaledToFit()
                     
                     //Restart button navigates back to countdown view
-                    NavigationLink(destination: Countdown()
+                    NavigationLink(destination: Countdown(survivorModeToggle: $survivorMode)
                                    , label: {
                                     Text("Restart")
                                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))

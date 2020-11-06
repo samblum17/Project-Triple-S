@@ -12,6 +12,7 @@ struct StartView: View {
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
     @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
     @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
+    @State private var survivorModeToggle: Bool = false
     
     var foreverAnimation: Animation {
         Animation.interpolatingSpring(stiffness: 80, damping: 3.0)
@@ -37,7 +38,7 @@ struct StartView: View {
                 //Play button navigates to brief countdown and then progromatically to the Sorting Center- where all the magic happens.
                 HStack{
                 NavigationLink(
-                    destination: Countdown()
+                    destination: Countdown(survivorModeToggle: $survivorModeToggle)
                         //Remove unecessary whitespace
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)
@@ -45,7 +46,7 @@ struct StartView: View {
                     label: {
                         Image(systemName: "play.fill").resizable()
                             .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(.init(UIColor.systemGray))
+                            .foregroundColor(survivorModeToggle ? .red : .init(UIColor.systemGray))
                             .shadow(radius: 10)
                             .padding()
 
@@ -64,9 +65,11 @@ struct StartView: View {
                 HStack {
                     Text("Survivor Mode")
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
-                    Toggle("", isOn: $survivorMode)
+                    Toggle("", isOn: $survivorModeToggle).onChange(of: survivorModeToggle, perform: { value in
+                        survivorMode = survivorModeToggle
+                    })
                     .labelsHidden()
-                    .toggleStyle(SwitchToggleStyle(tint: .gray))
+                    .toggleStyle(SwitchToggleStyle(tint: .red))
                 }
                 Spacer()
             }
@@ -77,6 +80,7 @@ struct StartView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear{
             playSound(sound: "start-chime", type: ".mp3", status: true)
+            survivorModeToggle = survivorMode
         }
     }
 }

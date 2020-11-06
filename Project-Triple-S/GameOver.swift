@@ -37,7 +37,7 @@ struct GameOver: View {
                         .foregroundColor(.black)
                     
                     //Play again button navigates back to countdown view
-                    NavigationLink(destination: Countdown()
+                    NavigationLink(destination: Countdown(survivorModeToggle: $survivorMode)
                                     .navigationBarBackButtonHidden(true)
                                     .navigationBarHidden(true), label: {
                                         Text("Play Again")

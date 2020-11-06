@@ -17,7 +17,7 @@ struct GameTimer: View {
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Text("\(timeRemaining)").bold()
+        Text(survivorMode ? ":0\(timeRemaining)" : "\(timeRemaining)").bold()
             .onReceive(timer) { _ in
                 guard self.isActive else { return }
                 if self.timeRemaining > 0 {

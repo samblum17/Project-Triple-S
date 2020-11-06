@@ -37,22 +37,22 @@ struct StartView: View {
                 
                 //Play button navigates to brief countdown and then progromatically to the Sorting Center- where all the magic happens.
                 HStack{
-                NavigationLink(
-                    destination: Countdown(survivorModeToggle: $survivorModeToggle)
-                        //Remove unecessary whitespace
+                    NavigationLink(
+                        destination: Countdown(survivorModeToggle: $survivorModeToggle)
+                            //Remove unecessary whitespace
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarHidden(true)
+                        ,
+                        label: {
+                            Image(systemName: "play.fill").resizable()
+                                .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(survivorModeToggle ? .red : .init(UIColor.systemGray))
+                                .shadow(radius: 10)
+                                .padding()
+                            
+                        })
                         .navigationBarBackButtonHidden(true)
                         .navigationBarHidden(true)
-                    ,
-                    label: {
-                        Image(systemName: "play.fill").resizable()
-                            .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(survivorModeToggle ? .red : .init(UIColor.systemGray))
-                            .shadow(radius: 10)
-                            .padding()
-
-                    })
-                    .navigationBarBackButtonHidden(true)
-                    .navigationBarHidden(true)
                 }
                 Spacer()
                 HStack{

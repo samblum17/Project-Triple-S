@@ -43,7 +43,7 @@ struct SurvivorSortingCenter: View {
             //Show menus based on state
             if pauseShowing {
                 PauseMenu(pauseShowing: $pauseShowing, timeRemaining: $timeRemaining, gameTimer: $gameTimer).zIndex(2.0).onAppear{
-                    playSound(sound: "sorting-track", type: ".wav", status: false)
+                    playInfiniteSound(sound: "sorting-track", type: ".wav", status: false)
                 }
             }
             if gameOverShowing {
@@ -152,7 +152,7 @@ struct SurvivorSortingCenter: View {
         }
         .onAppear{
             //Play game soundtrack while sorting
-            playSound(sound: "sorting-track", type: ".wav", status: true)
+            playInfiniteSound(sound: "sorting-track", type: ".wav", status: true)
         }
     }
     

@@ -90,10 +90,10 @@ struct Utensil: View, Hashable {
                                 gameOverShowing = true
                                 gameTimer.cancelTimer()
                             } else {
-                            withAnimation(.spring()) {
-                                failureHapticFeedback()
-                                self.dragAmount = .zero
-                            }
+                                withAnimation(.spring()) {
+                                    failureHapticFeedback()
+                                    self.dragAmount = .zero
+                                }
                             }
                         }
                     }

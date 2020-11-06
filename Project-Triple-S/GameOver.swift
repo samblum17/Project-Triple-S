@@ -29,7 +29,7 @@ struct GameOver: View {
                         .bold()
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
-
+                    
                     Text(subText + "\(totalScore)")
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .scaledToFill()
@@ -70,7 +70,7 @@ struct GameOver: View {
             
         }
         .background(VisualEffectView(effect: UIBlurEffect(style: .dark))
-        .edgesIgnoringSafeArea(.all))
+                        .edgesIgnoringSafeArea(.all))
         .onAppear{
             //When game ends, check if player beat high score, update saved high score in AppStorage, and display SSS message
             if survivorMode {

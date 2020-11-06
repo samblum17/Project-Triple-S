@@ -6,7 +6,7 @@
 //
 
 
-//PlayAgainButton is unnused (replaced with nav link). Keep for possible future implementation
+//DEPRECATED- PlayAgainButton is unnused (replaced with nav link). Keep for possible future implementation
 
 
 //import SwiftUI

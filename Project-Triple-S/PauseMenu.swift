@@ -29,7 +29,11 @@ struct PauseMenu: View {
                     Button(action: {
                         gameTimer.instantiateTimer(timeRemaining: timeRemaining)
                         pauseShowing = false
-                        playSound(sound: "sorting-track", type: ".wav", status: true)
+                        if (survivorMode){
+                            playInfiniteSound(sound: "sorting-track", type: ".wav", status: true)
+                        } else {
+                            playSound(sound: "sorting-track", type: ".wav", status: true)
+                        }
                     }, label: {
                         Text("Resume")
                             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))

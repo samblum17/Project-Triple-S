@@ -13,7 +13,6 @@ struct Countdown: View {
     @State var setShowing = false
     @State var sortShowing = false
     @State var showGame = false
-//    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
     @Binding var survivorModeToggle: Bool
     
     var body: some View {
@@ -36,7 +35,7 @@ struct Countdown: View {
                 if survivorModeToggle {
                     NavigationLink(destination: SurvivorSortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
                 } else {
-                NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
+                    NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
                 }
             }.scaledToFill()
             

@@ -1,15 +1,16 @@
-<img src="https://github.com/samblum17/Project-Triple-S/blob/main/Project-Triple-S/Assets.xcassets/Silverware%20Sorter%20Marketing%20Banner.png?raw=true">
+<img src="https://github.com/samblum17/Project-Triple-S/blob/main/Project-Triple-S/Assets.xcassets/Silverware%20Sorter%20Marketing%20Banner%20V2.0.png?raw=true">
 
 ###### There is nothing more satisfying than a neat, sorted set of silverware. Practice your coordination skills and start sorting today.
 [Download now on the App Store](https://apps.apple.com/us/app/silverware-sorter/id1538396767)
 
 ## Game Highlights:
-Silverware Sorter is a fast-paced sorting game that will put your hand-eye coordination to the test. You have 17 seconds to sort as many pieces of unsorted silverware as possible.
+Silverware Sorter is a fast-paced sorting game that will put your hand-eye coordination to the test. With two exciting game modes, your task is to sort as many pieces of unsorted silverware as possible.
 
+Game Highlights:
 - Improve your hand-eye coordination with rapid sorting of randomly generated silverware
 - Exercise your brain and fidget throughout the day to remain mentally focused
 - Feel the silverware snap into place with custom haptic feedback
-- Prove you're the most organized of your friends and show off your new high score
+- Prove you're the most organized of your friends and show off your new high scores
 - Sort during the day or night with stunning light and dark mode designs
 - Choose your favorite controller: Available on iPhone and iPad
 
@@ -34,4 +35,10 @@ Grit, humility, and a constant drive to never be satisfied push me to seek new o
 Questions about any of the code or project as a whole? I'd love to chat! Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/samblum17/) or email samblum17@icloud.com.
 
 
-//Last updated for Version 1.0.1 on November 4, 2020.
+
+//Last updated for Version 2.0 on November 9, 2020:
+- The all-new Survivor Mode. How many utensils can you correctly sort in a row? Keep sorting as many as possible without misplacing one. You have 2 seconds to sort each utensil.
+- A new Help screen in case you want to clarify the rules before any serious sorting begins
+- Do you wonder how many pieces of silverware you've ever sorted? Now you can keep track! Starting today, navigate to the new Help screen and show off your all-time running total of sorted utensils.
+- Redesigned Start screen
+- Minor bug fixes and enhancements

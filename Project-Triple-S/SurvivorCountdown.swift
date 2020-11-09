@@ -1,19 +1,21 @@
 //
-//  Countdown.swift
+//  SurvivorCountdown.swift
 //  Project-Triple-S
 //
-//  Created by Sam Blum on 11/1/20.
+//  Created by Sam Blum on 11/9/20.
 //
+
 
 import SwiftUI
 
-//Ready, set, sort countdown
-struct Countdown: View {
+//Countdown to survivor gameplay
+struct SurvivorCountdown: View {
     //Variables to manage state of countdown
     @State var readyShowing = true
     @State var setShowing = false
     @State var sortShowing = false
     @State var showGame = false
+
     
     var body: some View {
         NavigationView{
@@ -30,9 +32,9 @@ struct Countdown: View {
                         .font(Font.custom("Chalkboard", size: 80, relativeTo: .largeTitle))
                 }
                 Spacer()
-                
                 //Progromatically navigate to game after showing countdown
-                NavigationLink(destination: SortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
+                NavigationLink(destination: SurvivorSortingCenter().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $showGame, label: { EmptyView()})
+                
             }.scaledToFill()
             
             //Delay showing of "set" and "sort" to create a countdown effect
@@ -55,9 +57,9 @@ struct Countdown: View {
 }
 
 
-struct Coundown_Previews: PreviewProvider {
+struct SurvivorCountdown_Previews: PreviewProvider {
     static var previews: some View {
-        Countdown()
+        SurvivorCountdown()
     }
 }
 

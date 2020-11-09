@@ -45,18 +45,33 @@ struct PauseMenu: View {
                     .scaledToFit()
                     
                     //Restart button navigates back to countdown view
-                    NavigationLink(destination: Countdown(survivorModeToggle: $survivorMode)
-                                   , label: {
-                                    Text("Restart")
-                                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
-                                        .padding()
-                                        .foregroundColor(.white)
-                                   })
-                        .buttonStyle(BorderlessButtonStyle())
-                        .background(Color.red)
-                        .clipShape(Capsule())
-                        .foregroundColor(Color.white)
-                        .scaledToFit()
+                    if survivorMode {
+                        NavigationLink(destination: SurvivorCountdown()
+                                       , label: {
+                                        Text("Restart")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+                                            .padding()
+                                            .foregroundColor(.white)
+                                       })
+                            .buttonStyle(BorderlessButtonStyle())
+                            .background(Color.red)
+                            .clipShape(Capsule())
+                            .foregroundColor(Color.white)
+                            .scaledToFit()
+                    } else {
+                        NavigationLink(destination: Countdown()
+                                       , label: {
+                                        Text("Restart")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+                                            .padding()
+                                            .foregroundColor(.white)
+                                       })
+                            .buttonStyle(BorderlessButtonStyle())
+                            .background(Color.red)
+                            .clipShape(Capsule())
+                            .foregroundColor(Color.white)
+                            .scaledToFit()
+                    }
                 }
             }.frame(minHeight: 150, idealHeight: 182, maxHeight: 200)
             .padding()

@@ -12,6 +12,7 @@ struct PauseMenu: View {
     @Binding var pauseShowing: Bool
     @Binding var timeRemaining: Int
     @Binding var gameTimer: GameTimer
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
     
     var body: some View {
         VStack {
@@ -28,7 +29,11 @@ struct PauseMenu: View {
                     Button(action: {
                         gameTimer.instantiateTimer(timeRemaining: timeRemaining)
                         pauseShowing = false
-                        playSound(sound: "sorting-track", type: ".wav", status: true)
+                        if (survivorMode){
+                            playInfiniteSound(sound: "sorting-track", type: ".wav", status: true)
+                        } else {
+                            playSound(sound: "sorting-track", type: ".wav", status: true)
+                        }
                     }, label: {
                         Text("Resume")
                             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
@@ -40,18 +45,33 @@ struct PauseMenu: View {
                     .scaledToFit()
                     
                     //Restart button navigates back to countdown view
-                    NavigationLink(destination: Countdown()
-                                   , label: {
-                                    Text("Restart")
-                                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
-                                        .padding()
-                                        .foregroundColor(.white)
-                                   })
-                        .buttonStyle(BorderlessButtonStyle())
-                        .background(Color.red)
-                        .clipShape(Capsule())
-                        .foregroundColor(Color.white)
-                        .scaledToFit()
+                    if survivorMode {
+                        NavigationLink(destination: SurvivorCountdown()
+                                       , label: {
+                                        Text("Restart")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+                                            .padding()
+                                            .foregroundColor(.white)
+                                       })
+                            .buttonStyle(BorderlessButtonStyle())
+                            .background(Color.red)
+                            .clipShape(Capsule())
+                            .foregroundColor(Color.white)
+                            .scaledToFit()
+                    } else {
+                        NavigationLink(destination: Countdown()
+                                       , label: {
+                                        Text("Restart")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+                                            .padding()
+                                            .foregroundColor(.white)
+                                       })
+                            .buttonStyle(BorderlessButtonStyle())
+                            .background(Color.red)
+                            .clipShape(Capsule())
+                            .foregroundColor(Color.white)
+                            .scaledToFit()
+                    }
                 }
             }.frame(minHeight: 150, idealHeight: 182, maxHeight: 200)
             .padding()

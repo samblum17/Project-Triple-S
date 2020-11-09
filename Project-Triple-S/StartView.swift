@@ -10,9 +10,8 @@ import SwiftUI
 //Start screen
 struct StartView: View {
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
-    var foreverAnimation: Animation {
-        Animation.interpolatingSpring(stiffness: 80, damping: 3.0)
-    }
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
+    @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
     
     var body: some View {
         //Mainly visuals on this view, all inside of a navigation view/VStack
@@ -22,6 +21,7 @@ struct StartView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .animation(.interpolatingSpring(stiffness: 80, damping: 3.0))
+                    .zIndex(1.0)
                 Spacer()
                 
                 Text("The silverware is ready...")
@@ -31,32 +31,52 @@ struct StartView: View {
                 Text("Are you?").font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .title))
                     .multilineTextAlignment(.center)
                 
-                //Play button navigates to brief countdown and then progromatically to the Sorting Center- where all the magic happens.
-                NavigationLink(
-                    destination: Countdown()
-                        //Remove unecessary whitespace
-                        .navigationBarBackButtonHidden(true)
-                        .navigationBarHidden(true)
-                    ,
-                    label: {
-                        Image(systemName: "play.fill").resizable()
-                            .frame(width: 50, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                //Play buttons navigate to brief countdown and then progromatically to the appropiate Sorting Center- where all the magic happens.
+                HStack{
+                    NavigationLink(destination: Countdown().onAppear{survivorMode = false}
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true), label: {
+                                        Text("Classic Mode")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .padding()
+                                    }
+                    )
+                    .buttonStyle(BorderlessButtonStyle())
+                    .background(Color.gray)
+                    .clipShape(Capsule())
+                    .foregroundColor(Color.white)
+                    
+                    .padding()
+                    NavigationLink(destination: SurvivorCountdown().onAppear{survivorMode = true}
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true), label: {
+                                        Text("Survivor Mode")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .padding()
+                                    }
+                    )
+                    .buttonStyle(BorderlessButtonStyle())
+                    .background(Color.gray)
+                    .clipShape(Capsule())
+                    .foregroundColor(Color.white)
+                    .padding()
+                }
+                Spacer()
+                Spacer()
+                Spacer()
+                
+                //Help view
+                VStack(alignment: .center){
+                    NavigationLink(destination: Help(), label: {
+                        Image(systemName: "questionmark.circle").resizable()
+                            .frame(width: 30, height: 30, alignment: .leading)
                             .foregroundColor(.init(UIColor.systemGray))
-                            .shadow(radius: 10)
-                            .padding()
-                        
                     })
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
+                }
                 Spacer()
-                HStack{
-                    Text("High Score:")
-                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
-                    Text("\(highScore)")
-                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title2), relativeTo: .title2))
-                    
-                }.padding()
-                Spacer()
+                
             }
             //Remove unecessary whitespace
         }.navigationBarTitle("")

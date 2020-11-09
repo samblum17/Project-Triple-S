@@ -10,13 +10,14 @@ import Combine
 
 //Timer to manage gameplay
 struct GameTimer: View {
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
     @State var timeRemaining = 17
     @Binding var gameOverShowing: Bool
     @State private var isActive = true
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        Text("\(timeRemaining)").bold()
+        Text(survivorMode ? ":0\(timeRemaining)" : "\(timeRemaining)").bold()
             .onReceive(timer) { _ in
                 guard self.isActive else { return }
                 if self.timeRemaining > 0 {
@@ -33,6 +34,11 @@ struct GameTimer: View {
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 self.isActive = true
+            }
+            .onAppear {
+                if survivorMode {
+                    timeRemaining = 2
+                }
             }
     }
     

@@ -11,8 +11,12 @@ import SwiftUI
 struct GameOver: View {
     @Binding var totalScore: Int
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
+    @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
+    @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
+    @AppStorage("allTimeSortedUtensils", store: UserDefaults(suiteName: ContentView.appGroup)) var allTimeSortedUtensils: Int = 0
     @State private var topText: String = "Game Over"
     @State private var subText: String = "Score: "
+    @State private var subText2: String = "High Score: "
     @Binding var gameOverShowing: Bool
     
     var body: some View {
@@ -27,27 +31,46 @@ struct GameOver: View {
                         .bold()
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
-
-                    Text(subText + "\(totalScore)")
+                    
+                    Text((subText + "\(totalScore)"))
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .scaledToFill()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
-                    
+                    Text((subText2 + "\(survivorMode ? survivorHighScore : highScore)"))
+                        .isHidden(survivorMode ? totalScore >= survivorHighScore : totalScore >= highScore)
+                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                        .scaledToFill()
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
                     //Play again button navigates back to countdown view
-                    NavigationLink(destination: Countdown()
-                                    .navigationBarBackButtonHidden(true)
-                                    .navigationBarHidden(true), label: {
-                                        Text("Play Again")
-                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
-                                            .padding()
-                                    }
-                    )
-                    .buttonStyle(BorderlessButtonStyle())
-                    .background(Color.green)
-                    .clipShape(Capsule())
-                    .foregroundColor(Color.white)
-                    
+                    if survivorMode {
+                        NavigationLink(destination: SurvivorCountdown()
+                                        .navigationBarBackButtonHidden(true)
+                                        .navigationBarHidden(true), label: {
+                                            Text("Play Again")
+                                                .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                                .padding()
+                                        }
+                        )
+                        .buttonStyle(BorderlessButtonStyle())
+                        .background(Color.green)
+                        .clipShape(Capsule())
+                        .foregroundColor(Color.white)
+                    } else {
+                        NavigationLink(destination: Countdown()
+                                        .navigationBarBackButtonHidden(true)
+                                        .navigationBarHidden(true), label: {
+                                            Text("Play Again")
+                                                .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                                .padding()
+                                        }
+                        )
+                        .buttonStyle(BorderlessButtonStyle())
+                        .background(Color.green)
+                        .clipShape(Capsule())
+                        .foregroundColor(Color.white)
+                    }
                     //Main menu button navigates back to start view
                     NavigationLink(destination: StartView()
                                    , label: {
@@ -61,6 +84,7 @@ struct GameOver: View {
                         .clipShape(Capsule())
                         .foregroundColor(Color.white)
                         .scaledToFit()
+                        .padding(.bottom)
                 }.scaledToFill()
             }.frame(minHeight: 150, idealHeight: 182, maxHeight: 200)
             .padding()
@@ -68,13 +92,22 @@ struct GameOver: View {
             
         }
         .background(VisualEffectView(effect: UIBlurEffect(style: .dark))
-        .edgesIgnoringSafeArea(.all))
+                        .edgesIgnoringSafeArea(.all))
         .onAppear{
             //When game ends, check if player beat high score, update saved high score in AppStorage, and display SSS message
-            if totalScore >= highScore {
-                highScore = totalScore
-                topText = "Supreme\nSilverware\nSorter!"
-                subText = "HIGH SCORE: "
+            allTimeSortedUtensils += totalScore
+            if survivorMode {
+                if totalScore >= survivorHighScore {
+                    survivorHighScore = totalScore
+                    topText = "Supreme\nSilverware\nSorter!"
+                    subText = "HIGH SCORE: "
+                }
+            } else {
+                if totalScore >= highScore {
+                    highScore = totalScore
+                    topText = "Supreme\nSilverware\nSorter!"
+                    subText = "HIGH SCORE: "
+                }
             }
         }
     }
@@ -86,3 +119,15 @@ struct SwiftUIView_Previews: PreviewProvider {
     }
 }
 
+//Extension to hide text
+extension View {
+    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
+        if hidden {
+            if !remove {
+                self.hidden()
+            }
+        } else {
+            self
+        }
+    }
+}

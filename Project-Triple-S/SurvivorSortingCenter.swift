@@ -1,14 +1,14 @@
 //
-//  SortingCenter.swift
+//  SurvivorSortingCenter.swift
 //  Project-Triple-S
 //
-//  Created by Sam Blum on 10/27/20.
+//  Created by Sam Blum on 11/05/20.
 //
 
 import SwiftUI
 
 //The true beef of the game. This is where the magic happens.
-struct SortingCenter: View {
+struct SurvivorSortingCenter: View {
     //Variables to hold always on-screen objects
     @State private var drawerFrames = [CGRect](repeating: .zero, count: 3)
     @State private var drawerOrigins = [CGPoint](repeating: .zero, count: 3)
@@ -19,7 +19,7 @@ struct SortingCenter: View {
     @State private var pauseShowing = false
     @State private var gameOverShowing = false
     @State private var gameTimer = GameTimer(gameOverShowing: .constant(false))
-    @State private var timeRemaining = 17 //Keep track of changing gameTimer time for when to show GameOver
+    @State private var timeRemaining = 2 //Keep track of changing survivorTimer time for when to show GameOver
     @State private var forkScore: Int = 0
     @State private var knifeScore: Int = 0
     @State private var spoonScore: Int = 0
@@ -43,7 +43,7 @@ struct SortingCenter: View {
             //Show menus based on state
             if pauseShowing {
                 PauseMenu(pauseShowing: $pauseShowing, timeRemaining: $timeRemaining, gameTimer: $gameTimer).zIndex(2.0).onAppear{
-                    playSound(sound: "sorting-track", type: ".wav", status: false)
+                    playInfiniteSound(sound: "sorting-track", type: ".wav", status: false)
                 }
             }
             if gameOverShowing {
@@ -152,7 +152,7 @@ struct SortingCenter: View {
         }
         .onAppear{
             //Play game soundtrack while sorting
-            playSound(sound: "sorting-track", type: ".wav", status: true)
+            playInfiniteSound(sound: "sorting-track", type: ".wav", status: true)
         }
     }
     
@@ -178,6 +178,7 @@ struct SortingCenter: View {
             totalScore += 1
             return currentDrawerMid
         } else {
+            gameOverShowing = true
             return CGPoint.zero
         }
         
@@ -194,8 +195,8 @@ struct SortingCenter: View {
 
 
 //Previews
-struct SortingCenter_Previews: PreviewProvider {
+struct SurvivorSortingCenter_Previews: PreviewProvider {
     static var previews: some View {
-        SortingCenter()
+        SurvivorSortingCenter()
     }
 }

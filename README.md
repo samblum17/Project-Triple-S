@@ -17,7 +17,7 @@ Game Highlights:
 This is silverware like you've never seen it before. Do you have what it takes to be the next Supreme Silverware Sorter?
 
 ## Prerequisites
-Silverware Sorter is designed for iPhone and iPad and coming soon to the Mac. Version 1.0.1 requires an iOS device running iOS 14+.
+Silverware Sorter is designed for iPhone, iPad, and Mac. Version 2.0 requires an iOS device running iOS 14+ or a Mac with Apple silicon.
 
 ## Development Process
 Codenamed "Project Triple S", Silverware Sorter was designed and developed from scratch to completion over the week of October 28 - November 3 2020. I built the application with the goal of sharpening SwiftUI skills and learning the foundations of iOS game development compared to general app development. The application was written entirely in Swift with SwiftUI and Xcode 12.0. Using a Notion workspace, I managed a kanban board for the project from start to finish over the 6 day period following strict deadlines and priorities to practice Agile project management. Project Triple S utilized Git and GitHub for source control, and the app was fully tested and reviewed before completion.

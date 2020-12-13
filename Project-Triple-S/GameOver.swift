@@ -115,7 +115,7 @@ struct GameOver: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        GameOver(totalScore: .constant(0), gameOverShowing: .constant(true))
+        GameOver(totalScore: .constant(111), gameOverShowing: .constant(true))
     }
 }
 

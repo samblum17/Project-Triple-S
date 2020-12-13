@@ -239,8 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				E4CA094C25491D3200C8993B /* ContentView.swift */,
-				E4CA0A082549466700C8993B /* StartView.swift */,
 				E40AE0882555C7BF00F1CB8F /* Help.swift */,
+				E4CA0A082549466700C8993B /* StartView.swift */,
 				E43BCB16254FC0FC0076BEA4 /* Countdown.swift */,
 				E4754D2D25591E3F0061DD24 /* SurvivorCountdown.swift */,
 				E4CA09782549212E00C8993B /* SortingCenter.swift */,
@@ -751,7 +751,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -776,7 +776,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.samblum17.Project-Triple-S";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

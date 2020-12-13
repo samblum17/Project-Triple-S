@@ -62,7 +62,7 @@ struct Utensil: View, Hashable {
                             successHapticFeedback()
                             if survivorMode {
                                 gameTimer.cancelTimer()
-                                gameTimer.instantiateTimer(timeRemaining: 1)
+                                gameTimer.instantiateTimer(timeRemaining: 2)
                                 timeRemaining = 2
                             }
                             endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero

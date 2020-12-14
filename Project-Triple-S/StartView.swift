@@ -38,6 +38,7 @@ struct StartView: View {
                                     .navigationBarHidden(true), label: {
                                         Text("Classic Mode")
                                             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .multilineTextAlignment(.center)
                                             .padding()
                                     }
                     )
@@ -52,6 +53,7 @@ struct StartView: View {
                                     .navigationBarHidden(true), label: {
                                         Text("Survivor Mode")
                                             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .multilineTextAlignment(.center)
                                             .padding()
                                     }
                     )

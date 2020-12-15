@@ -148,7 +148,8 @@ struct SortingCenter: View {
                 })
             }
             //Anchor to bottom left of ZStack
-            .offset(x: -UIScreen.main.bounds.width/3, y: UIScreen.main.bounds.height/3.3).padding()
+            .if(!ProcessInfo.processInfo.isiOSAppOnMac){value in value.offset(x: -UIScreen.main.bounds.width/3, y: UIScreen.main.bounds.height/3.3).padding()}
+            .if(ProcessInfo.processInfo.isiOSAppOnMac){value in value.offset(x: -UIScreen.main.bounds.width/5, y: UIScreen.main.bounds.height/5).padding()}
         }
         .onAppear{
             //Play game soundtrack while sorting

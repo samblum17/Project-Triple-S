@@ -129,8 +129,7 @@ struct SurvivorSortingCenter: View {
                     Image("plate")
                         .resizable()
                         .frame(width: 60, height: 60)
-                        .colorMultiply(.gray)
-                        Text("☠️").font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .largeTitle))
+                        gameTimer
                         .onReceive(gameTimer.timer, perform: { _ in
                         self.timeRemaining -= 1
                         if self.timeRemaining == 0 {
@@ -138,6 +137,10 @@ struct SurvivorSortingCenter: View {
                             gameOverShowing = true
                         }
                     })
+                            .onChange(of: totalScore) { _ in
+                                self.timeRemaining = 1
+                                gameTimer.timeRemaining = 1
+                            }
                 }
                 Button(action: {
                     gameTimer.cancelTimer()

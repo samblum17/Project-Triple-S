@@ -44,11 +44,10 @@ struct PauseMenu: View {
                     .foregroundColor(Color.white)
                     .scaledToFit()
                     
-                    //Restart button navigates back to countdown view
-                    if survivorMode {
-                        NavigationLink(destination: SurvivorCountdown()
+                    //Main Menu button navigates back to Start view
+                        NavigationLink(destination: StartView()
                                        , label: {
-                                        Text("Restart")
+                                        Text("Main Menu")
                                             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
                                             .padding()
                                             .foregroundColor(.white)
@@ -58,20 +57,6 @@ struct PauseMenu: View {
                             .clipShape(Capsule())
                             .foregroundColor(Color.white)
                             .scaledToFit()
-                    } else {
-                        NavigationLink(destination: Countdown()
-                                       , label: {
-                                        Text("Restart")
-                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
-                                            .padding()
-                                            .foregroundColor(.white)
-                                       })
-                            .buttonStyle(BorderlessButtonStyle())
-                            .background(Color.red)
-                            .clipShape(Capsule())
-                            .foregroundColor(Color.white)
-                            .scaledToFit()
-                    }
                 }
             }.frame(minHeight: 150, idealHeight: 182, maxHeight: 200)
             .padding()

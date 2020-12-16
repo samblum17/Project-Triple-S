@@ -20,6 +20,7 @@ struct SurvivorSortingCenter: View {
     @State private var gameOverShowing = false
     @State private var gameTimer = GameTimer(gameOverShowing: .constant(false))
     @State private var timeRemaining = 2 //Keep track of changing survivorTimer time for when to show GameOver
+
     @State private var forkScore: Int = 0
     @State private var knifeScore: Int = 0
     @State private var spoonScore: Int = 0
@@ -128,7 +129,9 @@ struct SurvivorSortingCenter: View {
                     Image("plate")
                         .resizable()
                         .frame(width: 60, height: 60)
-                    gameTimer.onReceive(gameTimer.timer, perform: { _ in
+                        .colorMultiply(.gray)
+                        Text("☠️").font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title1), relativeTo: .largeTitle))
+                        .onReceive(gameTimer.timer, perform: { _ in
                         self.timeRemaining -= 1
                         if self.timeRemaining == 0 {
                             gameTimer.cancelTimer()

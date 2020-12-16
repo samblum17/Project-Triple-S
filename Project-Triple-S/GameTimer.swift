@@ -18,7 +18,7 @@ struct GameTimer: View {
     
     var body: some View {
         Text(survivorMode ? ":0\(timeRemaining)" : "\(timeRemaining)").bold()
-            .onReceive(timer) { _ in
+            .onReceive(timer) {_ in
                 guard self.isActive else { return }
                 if self.timeRemaining > 0 {
                     self.timeRemaining -= 01
@@ -37,7 +37,7 @@ struct GameTimer: View {
             }
             .onAppear {
                 if survivorMode {
-                    timeRemaining = 2
+                    timeRemaining = 1
                 }
             }
     }

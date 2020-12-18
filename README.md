@@ -7,12 +7,12 @@
 Silverware Sorter is a fast-paced sorting game that will put your hand-eye coordination to the test. With two exciting game modes, your task is to sort as many pieces of unsorted silverware as possible.
 
 Game Highlights:
-- Improve your hand-eye coordination with rapid sorting of randomly generated silverware
-- Exercise your brain and fidget throughout the day to remain mentally focused
-- Feel the silverware snap into place with custom haptic feedback
-- Prove you're the most organized of your friends and show off your new high scores
-- Sort during the day or night with stunning light and dark mode designs
-- Choose your favorite controller: Available on iPhone and iPad
+- Improve your hand-eye coordination with rapid sorting of randomly generated silverware.
+- Exercise your brain and fidget throughout the day to remain mentally focused.
+- Feel the silverware snap into place with custom haptic feedback.
+- Prove you're the most organized of your friends and show off your new high scores.
+- Sort during the day or night with stunning light and dark mode designs.
+- Choose your favorite controller: Available on iPhone, iPad, and Macs with Apple silicon.
 
 This is silverware like you've never seen it before. Do you have what it takes to be the next Supreme Silverware Sorter?
 

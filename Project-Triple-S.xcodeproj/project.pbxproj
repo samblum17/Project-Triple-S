@@ -12,6 +12,7 @@
 		E43BCAF9254FAED80076BEA4 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BCAF8254FAED80076BEA4 /* PlaySound.swift */; };
 		E43BCB0F254FC0F00076BEA4 /* start-chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */; };
 		E43BCB17254FC0FC0076BEA4 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BCB16254FC0FC0076BEA4 /* Countdown.swift */; };
+		E45C8369258C2F8A00009958 /* SurvivorGameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C8368258C2F8A00009958 /* SurvivorGameOver.swift */; };
 		E4754D2E25591E3F0061DD24 /* SurvivorCountdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4754D2D25591E3F0061DD24 /* SurvivorCountdown.swift */; };
 		E4A55783254E229C008BE6D1 /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A55782254E229C008BE6D1 /* PauseMenu.swift */; };
 		E4A5578B254E99CA008BE6D1 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A5578A254E99C9008BE6D1 /* GameOver.swift */; };
@@ -79,6 +80,7 @@
 		E43BCAF8254FAED80076BEA4 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		E43BCB0E254FC0F00076BEA4 /* start-chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "start-chime.mp3"; path = "../start-chime.mp3"; sourceTree = "<group>"; };
 		E43BCB16254FC0FC0076BEA4 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		E45C8368258C2F8A00009958 /* SurvivorGameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurvivorGameOver.swift; sourceTree = "<group>"; };
 		E4754D2D25591E3F0061DD24 /* SurvivorCountdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurvivorCountdown.swift; sourceTree = "<group>"; };
 		E4A55782254E229C008BE6D1 /* PauseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
 		E4A5578A254E99C9008BE6D1 /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				E4CA098125492FD800C8993B /* Utensil.swift */,
 				E4A55782254E229C008BE6D1 /* PauseMenu.swift */,
 				E4A5578A254E99C9008BE6D1 /* GameOver.swift */,
+				E45C8368258C2F8A00009958 /* SurvivorGameOver.swift */,
 				E4E1A7F22549E8EF0092A4BC /* GameTimer.swift */,
 				E4C2635F255530A5006E3EEB /* SurvivorTimer.swift */,
 				E4A55798254E9BD5008BE6D1 /* PlayAgainButton.swift */,
@@ -524,6 +527,7 @@
 				E4CA098225492FD800C8993B /* Utensil.swift in Sources */,
 				E4C2635825552777006E3EEB /* SurvivorSortingCenter.swift in Sources */,
 				E4754D2E25591E3F0061DD24 /* SurvivorCountdown.swift in Sources */,
+				E45C8369258C2F8A00009958 /* SurvivorGameOver.swift in Sources */,
 				E43BCB17254FC0FC0076BEA4 /* Countdown.swift in Sources */,
 				E4CA0A092549466800C8993B /* StartView.swift in Sources */,
 				E40AE0892555C7BF00F1CB8F /* Help.swift in Sources */,

@@ -48,7 +48,7 @@ struct SurvivorSortingCenter: View {
                 }
             }
             if gameOverShowing {
-                GameOver(totalScore: $totalScore, highScore: highScore, gameOverShowing: self.$gameOverShowing).zIndex(2.0)
+                SurvivorGameOver(totalScore: $totalScore, survivorHighScore: survivorHighScore, gameOverShowing: self.$gameOverShowing).zIndex(2.0)
             }
             
             //Gameplay views are contained in VStack

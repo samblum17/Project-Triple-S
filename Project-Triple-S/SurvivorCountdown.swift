@@ -15,7 +15,7 @@ struct SurvivorCountdown: View {
     @State var setShowing = false
     @State var sortShowing = false
     @State var showGame = false
-
+    
     
     var body: some View {
         NavigationView{

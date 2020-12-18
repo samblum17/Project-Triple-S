@@ -61,6 +61,6 @@ struct Help: View {
 
 struct Help_Previews: PreviewProvider {
     static var previews: some View {
-        Help()
+        Help().environment(\.sizeCategory, .large)
     }
 }

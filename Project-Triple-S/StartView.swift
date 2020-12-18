@@ -79,7 +79,6 @@ struct StartView: View {
                     .navigationBarHidden(true)
                 }
                 Spacer()
-                
             }
             //Remove unecessary whitespace
         }.navigationBarTitle("")

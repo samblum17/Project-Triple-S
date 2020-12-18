@@ -45,18 +45,18 @@ struct PauseMenu: View {
                     .scaledToFit()
                     
                     //Main Menu button navigates back to Start view
-                        NavigationLink(destination: StartView()
-                                       , label: {
-                                        Text("Main Menu")
-                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
-                                            .padding()
-                                            .foregroundColor(.white)
-                                       })
-                            .buttonStyle(BorderlessButtonStyle())
-                            .background(Color.red)
-                            .clipShape(Capsule())
-                            .foregroundColor(Color.white)
-                            .scaledToFit()
+                    NavigationLink(destination: StartView()
+                                   , label: {
+                                    Text("Main Menu")
+                                        .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .title3), relativeTo: .title3))
+                                        .padding()
+                                        .foregroundColor(.white)
+                                   })
+                        .buttonStyle(BorderlessButtonStyle())
+                        .background(Color.red)
+                        .clipShape(Capsule())
+                        .foregroundColor(Color.white)
+                        .scaledToFit()
                 }
             }.frame(minHeight: 150, idealHeight: 182, maxHeight: 200)
             .padding()

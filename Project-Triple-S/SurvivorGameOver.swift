@@ -42,19 +42,19 @@ struct SurvivorGameOver: View {
                         .scaledToFill()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
-                    //Play again button navigates back to countdown view
-                        NavigationLink(destination: SurvivorCountdown()
-                                        .navigationBarBackButtonHidden(true)
-                                        .navigationBarHidden(true), label: {
-                                            Text("Play Again")
-                                                .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
-                                                .padding()
-                                        }
-                        )
-                        .buttonStyle(BorderlessButtonStyle())
-                        .background(Color.green)
-                        .clipShape(Capsule())
-                        .foregroundColor(Color.white)
+                    //Play again button navigates back to survivor countdown view
+                    NavigationLink(destination: SurvivorCountdown()
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true), label: {
+                                        Text("Play Again")
+                                            .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .padding()
+                                    }
+                    )
+                    .buttonStyle(BorderlessButtonStyle())
+                    .background(Color.green)
+                    .clipShape(Capsule())
+                    .foregroundColor(Color.white)
                     //Main menu button navigates back to start view
                     NavigationLink(destination: StartView()
                                    , label: {
@@ -80,11 +80,11 @@ struct SurvivorGameOver: View {
         .onAppear{
             //When game ends, check if player beat high score, update saved high score in AppStorage, and display SSS message
             allTimeSortedUtensils += totalScore
-                if totalScore >= survivorHighScore {
-                    survivorHighScore = totalScore
-                    topText = "Supreme\nSilverware\nSorter!"
-                    subText = "HIGH SCORE: "
-                }
+            if totalScore >= survivorHighScore {
+                survivorHighScore = totalScore
+                topText = "Supreme\nSilverware\nSorter!"
+                subText = "HIGH SCORE: "
+            }
         }
     }
 }

@@ -12,7 +12,6 @@ struct GameOver: View {
     @Binding var totalScore: Int
     @AppStorage("highScore", store: UserDefaults(suiteName: ContentView.appGroup)) var highScore: Int = 0
     @AppStorage("survivorMode", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorMode: Bool = false
-    @AppStorage("survivorHighScore", store: UserDefaults(suiteName: ContentView.appGroup)) var survivorHighScore: Int = 0
     @AppStorage("allTimeSortedUtensils", store: UserDefaults(suiteName: ContentView.appGroup)) var allTimeSortedUtensils: Int = 0
     @State private var topText: String = "Game Over"
     @State private var subText: String = "Score: "
@@ -31,33 +30,18 @@ struct GameOver: View {
                         .bold()
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
-                    
                     Text((subText + "\(totalScore)"))
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .scaledToFill()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
-                    Text((subText2 + "\(survivorMode ? survivorHighScore : highScore)"))
-                        .isHidden(survivorMode ? totalScore >= survivorHighScore : totalScore >= highScore)
+                    Text((subText2 + "\(highScore)"))
+                        .isHidden(totalScore >= highScore)
                         .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .scaledToFill()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
                     //Play again button navigates back to countdown view
-                    if survivorMode {
-                        NavigationLink(destination: SurvivorCountdown()
-                                        .navigationBarBackButtonHidden(true)
-                                        .navigationBarHidden(true), label: {
-                                            Text("Play Again")
-                                                .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
-                                                .padding()
-                                        }
-                        )
-                        .buttonStyle(BorderlessButtonStyle())
-                        .background(Color.green)
-                        .clipShape(Capsule())
-                        .foregroundColor(Color.white)
-                    } else {
                         NavigationLink(destination: Countdown()
                                         .navigationBarBackButtonHidden(true)
                                         .navigationBarHidden(true), label: {
@@ -70,7 +54,6 @@ struct GameOver: View {
                         .background(Color.green)
                         .clipShape(Capsule())
                         .foregroundColor(Color.white)
-                    }
                     //Main menu button navigates back to start view
                     NavigationLink(destination: StartView()
                                    , label: {
@@ -96,19 +79,11 @@ struct GameOver: View {
         .onAppear{
             //When game ends, check if player beat high score, update saved high score in AppStorage, and display SSS message
             allTimeSortedUtensils += totalScore
-            if survivorMode {
-                if totalScore >= survivorHighScore {
-                    survivorHighScore = totalScore
-                    topText = "Supreme\nSilverware\nSorter!"
-                    subText = "HIGH SCORE: "
-                }
-            } else {
                 if totalScore >= highScore {
                     highScore = totalScore
                     topText = "Supreme\nSilverware\nSorter!"
                     subText = "HIGH SCORE: "
                 }
-            }
         }
     }
 }

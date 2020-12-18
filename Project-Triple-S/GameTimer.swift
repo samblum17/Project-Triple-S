@@ -21,7 +21,10 @@ struct GameTimer: View {
             .onReceive(timer) {_ in
                 guard self.isActive else { return }
                 if self.timeRemaining > 0 {
+                    //Remove countdown in survivor mode to avoid 0 bug with timer
+                    if !survivorMode {
                     self.timeRemaining -= 01
+                    }
                 } else {
                     gameOverShowing = true
                 }

@@ -62,8 +62,8 @@ struct Utensil: View, Hashable {
                             successHapticFeedback()
                             if survivorMode {
                                 gameTimer.cancelTimer()
-                                gameTimer.instantiateTimer(timeRemaining: 1)
-                                timeRemaining = 2
+                                gameTimer.instantiateTimer(timeRemaining: 2)
+                                timeRemaining = 1
                             }
                             endPos = self.onEnded?(value.location, self.utensil) ?? CGPoint.zero
                             let drawerWidth = -drawerFrames[0].width //for readability

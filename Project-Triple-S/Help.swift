@@ -39,7 +39,7 @@ struct Help: View {
                     Text("High Score: \(survivorHighScore)").font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                         .multilineTextAlignment(.center)
                     HStack() {
-                        Text("How many can you correctly sort in a row? Keep sorting as many utensils as possible without misplacing one. You have 2 seconds to sort each utensil.").font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                        Text("How many utensils can you correctly sort in a row? Keep sorting without misplacing one to survive. You only have 1 second to sort each utensil.").font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
                     }.padding()
                     .fixedSize(horizontal: false, vertical: true)
                     Spacer()
@@ -61,6 +61,6 @@ struct Help: View {
 
 struct Help_Previews: PreviewProvider {
     static var previews: some View {
-        Help().environment(\.sizeCategory, .accessibilityExtraLarge)
+        Help().environment(\.sizeCategory, .large)
     }
 }

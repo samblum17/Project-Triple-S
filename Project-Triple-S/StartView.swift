@@ -33,11 +33,13 @@ struct StartView: View {
                 
                 //Play buttons navigate to brief countdown and then progromatically to the appropiate Sorting Center- where all the magic happens.
                 HStack{
-                    NavigationLink(destination: Countdown().onAppear{survivorMode = false}
+                    NavigationLink(destination: Countdown()
+                                    .onAppear{survivorMode = false}
                                     .navigationBarBackButtonHidden(true)
                                     .navigationBarHidden(true), label: {
                                         Text("Classic Mode")
                                             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .multilineTextAlignment(.center)
                                             .padding()
                                     }
                     )
@@ -45,13 +47,14 @@ struct StartView: View {
                     .background(Color.gray)
                     .clipShape(Capsule())
                     .foregroundColor(Color.white)
-                    
                     .padding()
-                    NavigationLink(destination: SurvivorCountdown().onAppear{survivorMode = true}
+                    NavigationLink(destination: SurvivorCountdown()
+                                    .onAppear{survivorMode = true}
                                     .navigationBarBackButtonHidden(true)
                                     .navigationBarHidden(true), label: {
                                         Text("Survivor Mode")
                                             .font(Font.custom("Chalkboard", size: ContentView.textSize(textStyle: .body), relativeTo: .body))
+                                            .multilineTextAlignment(.center)
                                             .padding()
                                     }
                     )
@@ -76,7 +79,6 @@ struct StartView: View {
                     .navigationBarHidden(true)
                 }
                 Spacer()
-                
             }
             //Remove unecessary whitespace
         }.navigationBarTitle("")

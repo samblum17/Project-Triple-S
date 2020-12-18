@@ -19,7 +19,8 @@ struct SurvivorSortingCenter: View {
     @State private var pauseShowing = false
     @State private var gameOverShowing = false
     @State private var gameTimer = GameTimer(gameOverShowing: .constant(false))
-    @State private var timeRemaining = 2 //Keep track of changing survivorTimer time for when to show GameOver
+    @State private var timeRemaining = 2 //Keep track of changing survivorTimer time for when to show GameOver. Starts at 2 for first utensil, moves to 1 after
+    
     @State private var forkScore: Int = 0
     @State private var knifeScore: Int = 0
     @State private var spoonScore: Int = 0
@@ -47,7 +48,7 @@ struct SurvivorSortingCenter: View {
                 }
             }
             if gameOverShowing {
-                GameOver(totalScore: $totalScore, highScore: highScore, gameOverShowing: self.$gameOverShowing).zIndex(2.0)
+                SurvivorGameOver(totalScore: $totalScore, survivorHighScore: survivorHighScore, gameOverShowing: self.$gameOverShowing).zIndex(2.0)
             }
             
             //Gameplay views are contained in VStack
@@ -128,13 +129,19 @@ struct SurvivorSortingCenter: View {
                     Image("plate")
                         .resizable()
                         .frame(width: 60, height: 60)
-                    gameTimer.onReceive(gameTimer.timer, perform: { _ in
-                        self.timeRemaining -= 1
-                        if self.timeRemaining == 0 {
-                            gameTimer.cancelTimer()
-                            gameOverShowing = true
+                    gameTimer
+                        .onReceive(gameTimer.timer, perform: { _ in
+                            self.timeRemaining -= 1
+                            if self.timeRemaining == 0 {
+                                gameTimer.cancelTimer()
+                                gameOverShowing = true
+                            }
+                        })
+                        //After first utensil give 1 second per utensil
+                        .onChange(of: totalScore) { _ in
+                            self.timeRemaining = 1
+                            gameTimer.timeRemaining = 1
                         }
-                    })
                 }
                 Button(action: {
                     gameTimer.cancelTimer()
@@ -148,7 +155,8 @@ struct SurvivorSortingCenter: View {
                 })
             }
             //Anchor to bottom left of ZStack
-            .offset(x: -UIScreen.main.bounds.width/3, y: UIScreen.main.bounds.height/3.3).padding()
+            .if(!ProcessInfo.processInfo.isiOSAppOnMac){value in value.offset(x: -UIScreen.main.bounds.width/3, y: UIScreen.main.bounds.height/3.3).padding()}
+            .if(ProcessInfo.processInfo.isiOSAppOnMac){value in value.offset(x: -UIScreen.main.bounds.width/5, y: UIScreen.main.bounds.height/5).padding()}
         }
         .onAppear{
             //Play game soundtrack while sorting

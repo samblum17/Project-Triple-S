@@ -17,7 +17,7 @@ Game Highlights:
 This is silverware like you've never seen it before. Do you have what it takes to be the next Supreme Silverware Sorter?
 
 ## Prerequisites
-Silverware Sorter is designed for iPhone, iPad, and Mac. Version 2.0 requires an iOS device running iOS 14+ or a Mac with Apple silicon.
+Silverware Sorter is designed for iPhone, iPad, and Mac. Version 2.1 requires an iOS device running iOS 14+ or a Mac with Apple silicon.
 
 ## Development Process
 Codenamed "Project Triple S", Silverware Sorter was designed and developed from scratch to completion over the week of October 28 - November 3 2020. I built the application with the goal of sharpening SwiftUI skills and learning the foundations of iOS game development compared to general app development. The application was written entirely in Swift with SwiftUI and Xcode 12.0. Using a Notion workspace, I managed a kanban board for the project from start to finish over the 6 day period following strict deadlines and priorities to practice Agile project management. Project Triple S utilized Git and GitHub for source control, and the app was fully tested and reviewed before completion.
@@ -36,9 +36,14 @@ Questions about any of the code or project as a whole? I'd love to chat! Feel fr
 
 
 
-//Last updated for Version 2.0 on November 9, 2020:
-- The all-new Survivor Mode. How many utensils can you correctly sort in a row? Keep sorting as many as possible without misplacing one. You have 2 seconds to sort each utensil.
-- A new Help screen in case you want to clarify the rules before any serious sorting begins
-- Do you wonder how many pieces of silverware you've ever sorted? Now you can keep track! Starting today, navigate to the new Help screen and show off your all-time running total of sorted utensils.
-- Redesigned Start screen
-- Minor bug fixes and enhancements
+//Last updated for Version 2.1 on December 17, 2020:
+- You impressed us with high scores in Survivor Mode, so we're upping the challenge: you now only have 1 second to sort each utensil.
+- Verified support for Macs with Apple silicon 
+- Adjusts the location of the timer and pause button to be more accessible when playing on a Mac with Apple silicon
+- Clarifies game rules on Help screen
+- Adds the ability to return to the Main Menu from the Pause screen
+- Fixes a bug with the timer in Survivor Mode
+- Fixes a navigation bug after completing a game and switching game modes
+- Fixes a bug that misaligned text on devices with larger text sizes enabled
+
+Wishing you a wonderful, healthy 2021 and happy sorting!
